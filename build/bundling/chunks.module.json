@@ -1,0 +1,97 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.44.1",
+  "hash": "a59b7647f3011256c166",
+  "publicPath": "/static/",
+  "outputPath": "C:\\xampp\\htdocs\\oneoff\\build\\static",
+  "assetsByChunkName": {
+    "oneoff": [
+      "oneoff.module.js",
+      "oneoff.2fa38a8f6cb71cb92d86.hot-update.js"
+    ]
+  },
+  "assets": [
+    {
+      "name": "2fa38a8f6cb71cb92d86.hot-update.json",
+      "size": 48,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "fonts/circular-std-medium.ttf",
+      "size": 86456,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "oneoff.2fa38a8f6cb71cb92d86.hot-update.js",
+      "size": 5640,
+      "chunks": [
+        "oneoff"
+      ],
+      "chunkNames": [
+        "oneoff"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "oneoff.module.js",
+      "size": 4951965,
+      "chunks": [
+        "oneoff"
+      ],
+      "chunkNames": [
+        "oneoff"
+      ],
+      "info": {},
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "oneoff": {
+      "chunks": [
+        "oneoff"
+      ],
+      "assets": [
+        "oneoff.module.js",
+        "oneoff.2fa38a8f6cb71cb92d86.hot-update.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "oneoff": {
+      "chunks": [
+        "oneoff"
+      ],
+      "assets": [
+        "oneoff.module.js",
+        "oneoff.2fa38a8f6cb71cb92d86.hot-update.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": []
+}
