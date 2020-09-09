@@ -9,14 +9,12 @@ const Header = ({ state }) => {
   const logoWhiteUrl = `${state.frontity.url}wp-content/uploads/2020/09/logo-small-white.png`;
 
   return (
-    <>
-      <Container>
-        <StyledLink link="/">
-          <Logo src={logoBlackUrl} alt="Logo"/>
-        </StyledLink>
-      </Container>
-      <Nav />
-    </>
+    <Container>
+      <StyledLink link="/">
+        <Logo src={logoBlackUrl} alt="Logo" />
+      </StyledLink>
+      {/* <Nav /> */}
+    </Container>
   );
 };
 
@@ -24,17 +22,18 @@ const Header = ({ state }) => {
 export default connect(Header);
 
 const Container = styled.div`
+  position: absolute;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  z-index: 100
 `;
 
 const Logo = styled(Image)`
   margin: 0;
-  margin-bottom: 16px;
 `;
 
 const StyledLink = styled(Link)`

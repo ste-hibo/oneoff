@@ -58,6 +58,7 @@ const globalStyles = css`
     src: url("${CircularStd}") format("truetype");
   }
   body {
+    overflow-y: hidden;
     margin: 0;
     font-family: Circular Std, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -66,6 +67,9 @@ const globalStyles = css`
   a:visited {
     color: inherit;
     text-decoration: none;
+  }
+  ::-webkit-scrollbar {
+    display:none;
   }
 `;
 

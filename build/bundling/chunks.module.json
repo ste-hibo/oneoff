@@ -2,13 +2,27 @@
   "errors": [],
   "warnings": [],
   "version": "4.44.1",
-  "hash": "35c6823e93f33788ce27",
+  "hash": "904e376d2a47330c03e9",
   "publicPath": "/static/",
   "outputPath": "C:\\xampp\\htdocs\\oneoff\\build\\static",
   "assetsByChunkName": {
-    "oneoff": "oneoff.module.js"
+    "oneoff": [
+      "oneoff.module.js",
+      "oneoff.e6f84b78a57e894c699d.hot-update.js"
+    ]
   },
   "assets": [
+    {
+      "name": "e6f84b78a57e894c699d.hot-update.json",
+      "size": 48,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
     {
       "name": "fonts/circular-std-medium.ttf",
       "size": 86456,
@@ -18,8 +32,23 @@
       "emitted": false
     },
     {
+      "name": "oneoff.e6f84b78a57e894c699d.hot-update.js",
+      "size": 16972,
+      "chunks": [
+        "oneoff"
+      ],
+      "chunkNames": [
+        "oneoff"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
       "name": "oneoff.module.js",
-      "size": 4951757,
+      "size": 4963242,
       "chunks": [
         "oneoff"
       ],
@@ -37,7 +66,8 @@
         "oneoff"
       ],
       "assets": [
-        "oneoff.module.js"
+        "oneoff.module.js",
+        "oneoff.e6f84b78a57e894c699d.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -49,7 +79,8 @@
         "oneoff"
       ],
       "assets": [
-        "oneoff.module.js"
+        "oneoff.module.js",
+        "oneoff.e6f84b78a57e894c699d.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
