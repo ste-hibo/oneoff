@@ -9,7 +9,7 @@ const settings = {
   },
   "packages": [
     {
-      "name": "@frontity/oneoff-theme",
+      "name": "oneoff-theme",
       "state": {
         "theme": {
           "menu": [

@@ -20,9 +20,10 @@
     "@frontity/core": "^1.8.0",
     "@frontity/html2react": "^1.3.5",
     "@frontity/mars-theme": "./packages/mars-theme",
+    "oneoff-theme": "file:packages/oneoff-theme",
     "@frontity/tiny-router": "^1.2.1",
     "@frontity/wp-source": "^1.8.1",
     "frontity": "^1.11.0",
-    "oneoff-theme": "file:packages/oneoff-theme"
+    "horizontal-scroll": "^1.1.0"
   }
 }
