@@ -1,53 +1,74 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect, styled } from "frontity";
+import Slider from "./blocks/Slider";
 
 const Page = ({ state }) => {
-  const [offsetX, setoffsetX] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
   const outerWrapper = useRef(null);
-
-  const handleScroll = (ev) => {
-    console.log(outerWrapper.current.scrollTop);
-    setoffsetX(outerWrapper.current.pageXOffset);
-  }
-
-  useEffect(() => {
-    outerWrapper.current.addEventListener("scroll", handleScroll);
-    return () => {
-      outerWrapper.current.removeEventListener("scroll", handleScroll);
-    }
-  }, [outerWrapper])
-
-  useEffect(() => {
-    console.log(offsetX);
-  }, [offsetX])
 
   const data = state.source.get(state.router.link);
   const page = state.source[data.type][data.id];
+  const blocks = page.acf ? page.acf.blocks : [];
+
+  const handleScroll = (ev) => {
+    setScrollTop(outerWrapper.current.scrollTop);
+  };
+
+  useEffect(() => {
+    outerWrapper.current.addEventListener("scroll", handleScroll, true);
+    return () => {
+      outerWrapper.current.removeEventListener("scroll", handleScroll);
+    };
+  }, [outerWrapper]);
+
+  // useEffect(() => {
+  //   console.log(scrollTop);
+  // }, [scrollTop]);
+
+  const createSingleBlock = (block, i) => {
+    const layout = block.acf_fc_layout;
+  
+    switch (layout) {
+      case "slider":
+        return <Slider key={`${layout}_${i}`} data={block}></Slider>;
+
+      case "wcee_panel":
+        return wceePanel(block);
+
+      case "text":
+        return textBlock(block);
+
+      case "big_words":
+        return bigWordsBlock(block);
+
+      case "contact_panel":
+        return contactPanel(block);
+
+      case "text_and_images":
+        return textAndImagesBlock(block);
+
+      default:
+        return <div>This block is not configured yet.</div>;
+    }
+  };
+
+  const renderBlocks = () => {
+    return blocks.map(createSingleBlock);
+  };
 
   return (
     <OuterWrapper ref={outerWrapper}>
-      <Wrapper>
-        <Slide></Slide>
-      </Wrapper>
+      <Wrapper blocks={blocks}>{renderBlocks()}</Wrapper>
     </OuterWrapper>
   );
 };
 
 export default connect(Page);
 
-const Slide = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: url("http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/Mask-Group-1.png");
-  background-size: auto 100vh;
-  background-repeat: repeat-x;
-  width: 400vw;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: 400vw;
+  width: ${(props) => props.blocks.length * 100}vw;
   transform: rotate(90deg) translateY(-100vh);
   transform-origin: top left;
 `;
@@ -62,5 +83,5 @@ const OuterWrapper = styled.div`
   position: absolute;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  z-index: 0
+  z-index: -10;
 `;

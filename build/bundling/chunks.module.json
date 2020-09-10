@@ -2,18 +2,18 @@
   "errors": [],
   "warnings": [],
   "version": "4.44.1",
-  "hash": "904e376d2a47330c03e9",
+  "hash": "5f78a28e320d8e70d388",
   "publicPath": "/static/",
   "outputPath": "C:\\xampp\\htdocs\\oneoff\\build\\static",
   "assetsByChunkName": {
     "oneoff": [
       "oneoff.module.js",
-      "oneoff.e6f84b78a57e894c699d.hot-update.js"
+      "oneoff.447e03eb78cec4dd5120.hot-update.js"
     ]
   },
   "assets": [
     {
-      "name": "e6f84b78a57e894c699d.hot-update.json",
+      "name": "447e03eb78cec4dd5120.hot-update.json",
       "size": 48,
       "chunks": [],
       "chunkNames": [],
@@ -21,6 +21,38 @@
         "hotModuleReplacement": true,
         "immutable": true
       },
+      "emitted": false
+    },
+    {
+      "name": "fonts/circular-air-light.ttf",
+      "size": 111896,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "fonts/circular-std-black.ttf",
+      "size": 86320,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "fonts/circular-std-bold.ttf",
+      "size": 86364,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "fonts/circular-std-book.ttf",
+      "size": 82856,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
       "emitted": false
     },
     {
@@ -32,8 +64,8 @@
       "emitted": false
     },
     {
-      "name": "oneoff.e6f84b78a57e894c699d.hot-update.js",
-      "size": 16972,
+      "name": "oneoff.447e03eb78cec4dd5120.hot-update.js",
+      "size": 20599,
       "chunks": [
         "oneoff"
       ],
@@ -48,7 +80,7 @@
     },
     {
       "name": "oneoff.module.js",
-      "size": 4963242,
+      "size": 5001989,
       "chunks": [
         "oneoff"
       ],
@@ -67,7 +99,7 @@
       ],
       "assets": [
         "oneoff.module.js",
-        "oneoff.e6f84b78a57e894c699d.hot-update.js"
+        "oneoff.447e03eb78cec4dd5120.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -80,7 +112,7 @@
       ],
       "assets": [
         "oneoff.module.js",
-        "oneoff.e6f84b78a57e894c699d.hot-update.js"
+        "oneoff.447e03eb78cec4dd5120.hot-update.js"
       ],
       "children": {},
       "childAssets": {}

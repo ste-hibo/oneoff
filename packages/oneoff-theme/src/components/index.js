@@ -1,12 +1,13 @@
 import React from "react";
-import { Global, css, connect, styled, Head } from "frontity";
+import { Global, connect, styled, Head } from "frontity";
 import Switch from "@frontity/components/switch";
 import Header from "./header";
 import Loading from "./loading";
 import Title from "./title";
 import Page from "./page";
 import PageError from "./page-error";
-import CircularStd from "../../fonts/circular-std-medium.ttf";
+import BottomLinks from "./BottomLinks";
+import { globalStyles } from "../styles.js";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -42,6 +43,7 @@ const Theme = ({ state }) => {
           <Page when={data.isPage} />
           <PageError when={data.isError} />
         </Switch>
+        <BottomLinks />
       </Main>
     </>
   );
@@ -49,32 +51,6 @@ const Theme = ({ state }) => {
 
 export default connect(Theme);
 
-const globalStyles = css`
-  @font-face {
-    font-family: "Circular Std";
-    font-style: normal;
-    font-weight: normal;
-    font-display: fallback;
-    src: url("${CircularStd}") format("truetype");
-  }
-  body {
-    overflow-y: hidden;
-    margin: 0;
-    font-family: Circular Std, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-  a,
-  a:visited {
-    color: inherit;
-    text-decoration: none;
-  }
-  ::-webkit-scrollbar {
-    display:none;
-  }
-`;
+const HeadContainer = styled.div``;
 
-const HeadContainer = styled.div`
-`;
-
-const Main = styled.div`
-`;
+const Main = styled.div``;

@@ -7,11 +7,13 @@ const Link = ({
   link,
   className,
   children,
+  style,
   "aria-current": ariaCurrent,
 }) => {
   const onClick = (event) => {
-    // Do nothing if it's an external link
-    if (link.startsWith("http")) return;
+    if (link.startsWith("http")) {
+      window.open(link, '_blank');
+    }
 
     event.preventDefault();
     // Set the router to the new url.
@@ -19,11 +21,6 @@ const Link = ({
 
     // Scroll the page to the top
     window.scrollTo(0, 0);
-
-    // if the menu modal is open, close it so it doesn't block rendering
-    if (state.theme.isMobileMenuOpen) {
-      actions.theme.closeMobileMenu();
-    }
   };
 
   return (
@@ -32,6 +29,7 @@ const Link = ({
       onClick={onClick}
       className={className}
       aria-current={ariaCurrent}
+      style={{ pointerEvents: "auto", ...style }}
     >
       {children}
     </a>

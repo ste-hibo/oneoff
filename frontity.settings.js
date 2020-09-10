@@ -30,6 +30,16 @@ const settings = {
               "/contacts/"
             ]
           ],
+          "bottomLinks": [
+            [
+              "Follow our world",
+              "https://www.instagram.com/"
+            ],
+            [
+              "Contact us",
+              "/contacts/"
+            ]
+          ],
           "featured": {
             "showOnList": false,
             "showOnPost": false
