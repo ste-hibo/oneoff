@@ -18,7 +18,7 @@ const oneoffTheme = {
      */
     theme: {
       menu: [],
-      isMobileMenuOpen: false,
+      isMenuOpen: false,
       featured: {
         showOnList: false,
         showOnPost: false,
@@ -31,12 +31,9 @@ const oneoffTheme = {
    */
   actions: {
     theme: {
-      toggleMobileMenu: ({ state }) => {
-        state.theme.isMobileMenuOpen = !state.theme.isMobileMenuOpen;
-      },
-      closeMobileMenu: ({ state }) => {
-        state.theme.isMobileMenuOpen = false;
-      },
+      toggleMenu: ({ state }) => {
+        state.theme.isMenuOpen = !state.theme.isMenuOpen;
+      }
     },
   },
   libraries: {

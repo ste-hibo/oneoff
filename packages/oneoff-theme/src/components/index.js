@@ -6,6 +6,7 @@ import Loading from "./loading";
 import Title from "./title";
 import Page from "./page";
 import PageError from "./page-error";
+import Menu from "./menu";
 import BottomLinks from "./BottomLinks";
 import { globalStyles } from "../styles.js";
 
@@ -33,6 +34,7 @@ const Theme = ({ state }) => {
       {/* Add the header of the site. */}
       <HeadContainer>
         <Header />
+        <Menu/>
       </HeadContainer>
 
       {/* Add the main section. It renders a different component depending

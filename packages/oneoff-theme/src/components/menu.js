@@ -1,47 +1,27 @@
 import React from "react";
-import { styled, connect, Global } from "frontity";
-import { CloseIcon, HamburgerIcon } from "./menu-icon";
-import MenuModal from "./menu-modal";
+import { connect, styled } from "frontity";
+import { CloseIcon, MenuIcon } from "./icons";
+import MenuModal from "./menu-modal"
 
-function MobileMenu({ state, actions }) {
-  const { isMobileMenuOpen } = state.theme;
+const Menu = ({ state, actions }) => {
+  const { isMenuOpen } = state.theme;
+
   return (
     <>
-      <MenuToggle onClick={actions.theme.toggleMobileMenu}>
-        {isMobileMenuOpen ? (
-          <>
-            {/* Add some style to the body when menu is open,
-            to prevent body scroll */}
-            <Global styles={{ body: { overflowY: "hidden" } }} />
-            <CloseIcon color="white" size="20px" />
-          </>
-        ) : (
-          <HamburgerIcon color="white" size="24px" />
-        )}
+      <MenuToggle onClick={actions.theme.toggleMenu}>
+        {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
       </MenuToggle>
-      {/* If the menu is open, render the menu modal */}
-      {isMobileMenuOpen && <MenuModal />}
+      {isMenuOpen && <MenuModal />}
     </>
   );
-}
+};
 
-const MenuToggle = styled.button`
+export default connect(Menu);
+
+const MenuToggle = styled.div`
   position: absolute;
-  right: 24px;
-  top: 24px;
-  background: transparent;
-  border: 0;
-  color: white;
-  z-index: 5;
-  height: 40px;
-  width: 40px;
-  display: none;
-
-  @media (max-width: 560px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  right: 0;
+  cursor: pointer;
+  margin: 4rem;
+  padding: 1rem;
 `;
-
-export default connect(MobileMenu);

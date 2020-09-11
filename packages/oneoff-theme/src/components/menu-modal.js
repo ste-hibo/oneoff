@@ -1,6 +1,8 @@
 import React from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
+import Nav from "./nav";
+import { colors } from "../styles";
 
 const MenuModal = ({ state }) => {
   const { menu } = state.theme;
@@ -9,7 +11,7 @@ const MenuModal = ({ state }) => {
   return (
     <>
       <MenuOverlay />
-      <MenuContent as="nav">
+      <MenuContent>
         {isThereLinks &&
           menu.map(([name, link]) => (
             <MenuLink
@@ -26,12 +28,12 @@ const MenuModal = ({ state }) => {
 };
 
 const MenuOverlay = styled.div`
-  background-color: #1f38c5;
+  background-color: ${colors.MENU_BACKGROUND};
   width: 100vw;
   height: 100vh;
   overflow: hidden auto;
   position: fixed;
-  z-index: 2;
+  z-index: -1;
   top: 0;
   left: 0;
 `;
@@ -44,19 +46,19 @@ const MenuLink = styled(Link)`
   width: 100%;
   display: inline-block;
   outline: 0;
-  font-size: 20px;
   text-align: center;
   padding: 1.2rem 0;
+  font-size: 3rem;
+  color: ${colors.WHITE};
+  font-family: Circular Book;
 
   &:hover,
   &:focus {
-    background-color: rgba(0, 0, 0, 0.05);
+    text-decoration: line-through;
   }
-  /* styles for active link */
+  /* style for active link */
   &[aria-current="page"] {
-    color: yellow;
-    font-weight: bold;
-    /* border-bottom: 4px solid yellow; */
+    text-decoration: line-through;
   }
 `;
 

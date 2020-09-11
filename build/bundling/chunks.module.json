@@ -2,18 +2,18 @@
   "errors": [],
   "warnings": [],
   "version": "4.44.1",
-  "hash": "5f78a28e320d8e70d388",
+  "hash": "a9535e1f89b15c1e316d",
   "publicPath": "/static/",
   "outputPath": "C:\\xampp\\htdocs\\oneoff\\build\\static",
   "assetsByChunkName": {
     "oneoff": [
       "oneoff.module.js",
-      "oneoff.447e03eb78cec4dd5120.hot-update.js"
+      "oneoff.781168cdf035450d13ab.hot-update.js"
     ]
   },
   "assets": [
     {
-      "name": "447e03eb78cec4dd5120.hot-update.json",
+      "name": "781168cdf035450d13ab.hot-update.json",
       "size": 48,
       "chunks": [],
       "chunkNames": [],
@@ -64,8 +64,8 @@
       "emitted": false
     },
     {
-      "name": "oneoff.447e03eb78cec4dd5120.hot-update.js",
-      "size": 20599,
+      "name": "oneoff.781168cdf035450d13ab.hot-update.js",
+      "size": 14243,
       "chunks": [
         "oneoff"
       ],
@@ -80,7 +80,7 @@
     },
     {
       "name": "oneoff.module.js",
-      "size": 5001989,
+      "size": 5044540,
       "chunks": [
         "oneoff"
       ],
@@ -99,7 +99,7 @@
       ],
       "assets": [
         "oneoff.module.js",
-        "oneoff.447e03eb78cec4dd5120.hot-update.js"
+        "oneoff.781168cdf035450d13ab.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -112,7 +112,7 @@
       ],
       "assets": [
         "oneoff.module.js",
-        "oneoff.447e03eb78cec4dd5120.hot-update.js"
+        "oneoff.781168cdf035450d13ab.hot-update.js"
       ],
       "children": {},
       "childAssets": {}

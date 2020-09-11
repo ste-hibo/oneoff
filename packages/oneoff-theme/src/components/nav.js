@@ -2,11 +2,6 @@ import React from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
 
-/**
- * Navigation Component
- *
- * It renders the navigation links
- */
 const Nav = ({ state }) => (
   <NavContainer>
     {state.theme.menu.map(([name, link]) => {
@@ -34,10 +29,6 @@ const NavContainer = styled.nav`
   padding: 0 24px;
   margin: 0;
   overflow-x: auto;
-
-  @media screen and (max-width: 560px) {
-    display: none;
-  }
 `;
 
 const NavItem = styled.div`
@@ -50,12 +41,6 @@ const NavItem = styled.div`
   & > a {
     display: inline-block;
     line-height: 2em;
-    border-bottom: 2px solid;
-    border-bottom-color: transparent;
-    /* Use for semantic approach to style the current link */
-    &[aria-current="page"] {
-      border-bottom-color: #000;
-    }
   }
 
   &:first-of-type {

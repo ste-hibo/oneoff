@@ -9,9 +9,9 @@ const BottomLinks = ({ state }) => {
   return (
     <LinksContainer>
       <LinksWrapper>
-        {links.map((link, i) => {
+        {links.map((link) => {
           return (
-            <GoldenLink style={{}} link={link[1]}>
+            <GoldenLink key={link} link={link[1]}>
               {link[0]}
             </GoldenLink>
           );

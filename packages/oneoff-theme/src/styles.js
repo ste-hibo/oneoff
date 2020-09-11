@@ -49,7 +49,6 @@ body {
 }
 a,
 a:visited {
-  color: inherit;
   text-decoration: none;
 }
 ::-webkit-scrollbar {
@@ -58,5 +57,9 @@ a:visited {
 `;
 
 export const colors = {
-  GOLD: "#B48E70"
+  GOLD: "#B48E70",
+  GOLD_DARKER: "#ba835f",
+  WHITE: "#fff",
+  MENU_BACKGROUND: "#000",
+  BLACK: "#000",
 }
