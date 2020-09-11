@@ -5,13 +5,14 @@ import { Logo, SubLogo } from "./icons";
 import { colors } from "../styles";
 
 const Header = ({ state }) => {
-  const { isMenuOpen } = state.theme;
+  const { menuIsOpening, menuIsClosing } = state.theme;
+  const menuOn = menuIsOpening && !menuIsClosing;
 
   return (
-    <Container isMenuOpen={isMenuOpen}>
+    <Container menuOn={menuOn}>
       <LogoLink link="/">
-        <Logo blendMode={isMenuOpen ? "normal" : "difference"} />
-        <SubLogo color={isMenuOpen ? colors.WHITE : colors.GOLD} />
+        <Logo blendMode={menuOn ? "normal" : "difference"} />
+        <SubLogo color={menuOn ? colors.WHITE : colors.GOLD} />
       </LogoLink>
     </Container>
   );
@@ -28,7 +29,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   pointer-events: none;
-  z-index: ${(props) => props.isMenuOpen ? "10" : "auto"};
+  z-index: ${(props) => props.menuOn ? "10" : "auto"};
 `;
 
 const LogoLink = styled(Link)`

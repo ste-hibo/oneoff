@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
 import { colors } from "../styles";
 import Image from "@frontity/components/image";
 
 const MenuModal = ({ state }) => {
-  const { menu } = state.theme;
+  const { menu, menuIsClosing } = state.theme;
   const isThereLinks = menu != null && menu.length > 0;
   const backgroundImageUrl =
     "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.png";
 
   return (
     <>
-      <MenuOverlay />
+      <MenuOverlay className={menuIsClosing ? "close" : ""} />
       <MenuContent>
-        <MenuImage src={backgroundImageUrl} />
-        <LinksWrapper>
+        <MenuImage src={backgroundImageUrl} className={menuIsClosing ? "close" : ""} />
+        <LinksWrapper className={menuIsClosing ? "close" : ""}>
           {isThereLinks &&
             menu.map(([name, link]) => (
               <MenuLink
@@ -32,6 +32,12 @@ const MenuModal = ({ state }) => {
   );
 };
 
+const animationParams = {
+  overlay:  ["1s    ease", "1s    ease"],
+  image:    ["0.75s ease", "0.75s ease"],
+  links:    ["0.5s  ease", "0.5s  ease"],
+};
+
 const MenuOverlay = styled.div`
   @keyframes open-overlay {
     0% {
@@ -42,11 +48,24 @@ const MenuOverlay = styled.div`
     }
   }
 
+  @keyframes close-overlay {
+    0% {
+      width: 100vw;
+    }
+    100% {
+      width: 0;
+    }
+  }
+
   background-color: ${colors.MENU_BACKGROUND};
   float: right;
-  animation: open-overlay 1s ease forwards;
+  animation: open-overlay ${animationParams.overlay[0]} forwards;
   width: 0;
   height: 100vh;
+
+  &.close {
+    animation: close-overlay ${animationParams.overlay[1]} forwards;
+  }
 `;
 
 const MenuContent = styled.div`
@@ -77,7 +96,11 @@ const MenuImage = styled(Image)`
 
   height: 100vh;
   transform: translate(0, 100vh);
-  animation: open-image 0.75s ease forwards;
+  animation: open-image ${animationParams.image[0]} forwards;
+
+  &.close {
+    animation: close-image ${animationParams.image[1]} forwards;
+  }
 `;
 
 const LinksWrapper = styled.div`
@@ -90,10 +113,23 @@ const LinksWrapper = styled.div`
     }
   }
 
-  animation: show-links .5s ease forwards;
+  @keyframes hide-links {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  animation: show-links ${animationParams.links[0]} forwards;
   margin-top: 19rem;
   margin-left: 8.4375rem;
   opacity: 0;
+
+  &.close {
+    animation: hide-links ${animationParams.links[1]} forwards;
+  }
 `;
 
 const MenuLink = styled(Link)`

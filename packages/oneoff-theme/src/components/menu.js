@@ -4,18 +4,37 @@ import { CloseIcon, MenuIcon } from "./icons";
 import MenuModal from "./menu-modal";
 
 const Menu = ({ state, actions }) => {
-  const { isMenuOpen } = state.theme;
+  const { isMenuOpen, menuIsOpening, menuIsClosing } = state.theme;
+  const menuToggleTimeout = 1000;
 
   useEffect(() => {
-    actions.theme.closeMenu();
+    if (isMenuOpen) {
+      actions.theme.closeMenu();
+    }
   }, [state.router.link]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (menuIsOpening) {
+        actions.theme.setMenuOpen()
+      }
+    }, menuToggleTimeout);
+  }, [menuIsOpening])
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (menuIsClosing) {
+        actions.theme.setMenuClose()
+      }
+    }, menuToggleTimeout);
+  }, [menuIsClosing])
 
   return (
     <>
-      <MenuToggle onClick={actions.theme.toggleMenu}>
-        {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+      <MenuToggle onClick={!isMenuOpen ? actions.theme.openMenu : actions.theme.closeMenu}>
+        {menuIsOpening && !menuIsClosing ? <CloseIcon /> : <MenuIcon />}
       </MenuToggle>
-      {isMenuOpen && <MenuModal />}
+      {menuIsOpening ? <MenuModal /> : null}
     </>
   );
 };
