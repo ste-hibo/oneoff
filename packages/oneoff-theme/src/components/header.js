@@ -8,16 +8,15 @@ const Header = ({ state }) => {
   const { isMenuOpen } = state.theme;
 
   return (
-    <Container>
+    <Container isMenuOpen={isMenuOpen}>
       <LogoLink link="/">
-        <Logo />
+        <Logo blendMode={isMenuOpen ? "normal" : "difference"} />
         <SubLogo color={isMenuOpen ? colors.WHITE : colors.GOLD} />
       </LogoLink>
     </Container>
   );
 };
 
-// Connect the Header component to get access to the `state` in it's `props`
 export default connect(Header);
 
 const Container = styled.div`
@@ -29,6 +28,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   pointer-events: none;
+  z-index: ${(props) => props.isMenuOpen ? "10" : "auto"};
 `;
 
 const LogoLink = styled(Link)`

@@ -33,7 +33,10 @@ const oneoffTheme = {
     theme: {
       toggleMenu: ({ state }) => {
         state.theme.isMenuOpen = !state.theme.isMenuOpen;
-      }
+      },
+      closeMenu: ({ state }) => {
+        state.theme.isMenuOpen = false;
+      },
     },
   },
   libraries: {

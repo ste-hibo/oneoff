@@ -54,9 +54,9 @@ export const CloseIcon = () => {
   );
 };
 
-export const Logo = () => {
+export const Logo = ({blendMode}) => {
   return (
-    <LogoStyle>
+    <LogoStyle blendMode={blendMode}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="134.174"
@@ -166,6 +166,6 @@ export const SubLogo = ({ color }) => {
 };
 
 const LogoStyle = styled.div`
-  mix-blend-mode: difference;
+  mix-blend-mode: ${(props) => props.blendMode};
   padding-bottom: 0.25rem;
 `;

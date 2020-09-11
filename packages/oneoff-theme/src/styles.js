@@ -5,6 +5,14 @@ import CircularBlack  from "../fonts/circular-std-black.ttf";
 import CircularBook   from "../fonts/circular-std-book.ttf";
 import CircularBold   from "../fonts/circular-std-bold.ttf";
 
+export const colors = {
+  GOLD: "#B48E70",
+  GOLD_DARKER: "#ba835f",
+  WHITE: "#fff",
+  MENU_BACKGROUND: "#000",
+  BLACK: "#000",
+}
+
 export const globalStyles = css`
 @font-face {
   font-family: "Circular Air";
@@ -43,23 +51,17 @@ export const globalStyles = css`
 }
 body {
   overflow-y: hidden;
+  color: ${colors.BLACK};
   margin: 0;
   font-family: Circular Std, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 a,
 a:visited {
+  color: inherit;
   text-decoration: none;
 }
 ::-webkit-scrollbar {
   display:none;
 }
 `;
-
-export const colors = {
-  GOLD: "#B48E70",
-  GOLD_DARKER: "#ba835f",
-  WHITE: "#fff",
-  MENU_BACKGROUND: "#000",
-  BLACK: "#000",
-}

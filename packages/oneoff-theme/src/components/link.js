@@ -11,21 +11,19 @@ const Link = ({
   "aria-current": ariaCurrent,
 }) => {
   const onClick = (event) => {
-    if (link.startsWith("http")) {
-      window.open(link, '_blank');
+    if (!link.startsWith("http")) {
+      event.preventDefault();
+      
+      actions.router.set(link);
+  
+      window.scrollTo(0, 0);
     }
-
-    event.preventDefault();
-    // Set the router to the new url.
-    actions.router.set(link);
-
-    // Scroll the page to the top
-    window.scrollTo(0, 0);
   };
 
   return (
     <a
       href={link}
+      target={link.startsWith("http") ? "_blank" : "auto"}
       onClick={onClick}
       className={className}
       aria-current={ariaCurrent}

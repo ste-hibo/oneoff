@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import { CloseIcon, MenuIcon } from "./icons";
-import MenuModal from "./menu-modal"
+import MenuModal from "./menu-modal";
 
 const Menu = ({ state, actions }) => {
   const { isMenuOpen } = state.theme;
+
+  useEffect(() => {
+    actions.theme.closeMenu();
+  }, [state.router.link]);
 
   return (
     <>

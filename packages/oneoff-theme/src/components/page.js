@@ -15,9 +15,13 @@ const Page = ({ state }) => {
   };
 
   useEffect(() => {
-    outerWrapper.current.addEventListener("scroll", handleScroll, true);
+    if (outerWrapper.current) {
+      outerWrapper.current.addEventListener("scroll", handleScroll, true);
+    }
     return () => {
-      outerWrapper.current.removeEventListener("scroll", handleScroll);
+      if (outerWrapper.current) {
+        outerWrapper.current.removeEventListener("scroll", handleScroll);
+      }
     };
   }, [outerWrapper]);
 
@@ -27,7 +31,7 @@ const Page = ({ state }) => {
 
   const createSingleBlock = (block, i) => {
     const layout = block.acf_fc_layout;
-  
+
     switch (layout) {
       case "slider":
         return <Slider key={`${layout}_${i}`} data={block}></Slider>;
@@ -56,10 +60,15 @@ const Page = ({ state }) => {
     return blocks.map(createSingleBlock);
   };
 
-  return (
+  return blocks ? (
     <OuterWrapper ref={outerWrapper}>
       <Wrapper blocks={blocks}>{renderBlocks()}</Wrapper>
     </OuterWrapper>
+  ) : (
+    <>
+      <h1>{page.title.rendered}</h1>
+      <div dangerouslySetInnerHTML={{ __html: page.content.rendered }}></div>
+    </>
   );
 };
 

@@ -9,10 +9,10 @@ const BottomLinks = ({ state }) => {
   return (
     <LinksContainer>
       <LinksWrapper>
-        {links.map((link) => {
+        {links.map(([name, link]) => {
           return (
-            <GoldenLink key={link} link={link[1]}>
-              {link[0]}
+            <GoldenLink key={name} link={link}>
+              {name}
             </GoldenLink>
           );
         })}
@@ -33,6 +33,7 @@ const LinksContainer = styled.div`
   width: 100vw;
   position: absolute;
   pointer-events: none;
+  z-index: -1;
 `;
 
 const LinksWrapper = styled.div`
