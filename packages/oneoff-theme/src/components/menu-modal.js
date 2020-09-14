@@ -1,21 +1,35 @@
-import React, { useRef } from "react";
+import React from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
 import { colors } from "../styles";
 import Image from "@frontity/components/image";
+import { InstagramIcon } from "./icons";
 
 const MenuModal = ({ state }) => {
-  const { menu, menuIsClosing } = state.theme;
+  const { menu, menuIsClosing, socials } = state.theme;
   const isThereLinks = menu != null && menu.length > 0;
+  const closeClass = "close";
   const backgroundImageUrl =
     "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.png";
 
   return (
     <>
-      <MenuOverlay className={menuIsClosing ? "close" : ""} />
+      <MenuOverlay className={menuIsClosing ? closeClass : ""}>
+        <MenuContacts className={menuIsClosing ? closeClass : ""}>
+          <ContactLink link="mailto:https://projects@oneoff.it">
+            projects@oneoff.it
+          </ContactLink>
+          <ContactLink link="tel:+390439029391">
+            +39 0439 02 93 91
+          </ContactLink>
+        </MenuContacts>
+      </MenuOverlay>
       <MenuContent>
-        <MenuImage src={backgroundImageUrl} className={menuIsClosing ? "close" : ""} />
-        <LinksWrapper className={menuIsClosing ? "close" : ""}>
+        <MenuImage
+          src={backgroundImageUrl}
+          className={menuIsClosing ? closeClass : ""}
+        />
+        <LinksWrapper className={menuIsClosing ? closeClass : ""}>
           {isThereLinks &&
             menu.map(([name, link]) => (
               <MenuLink
@@ -26,17 +40,51 @@ const MenuModal = ({ state }) => {
                 {name}
               </MenuLink>
             ))}
+          <IconContainer link={socials.instagram}>
+            <InstagramIcon />
+          </IconContainer>
         </LinksWrapper>
       </MenuContent>
     </>
   );
 };
 
+// [opening, closing]
 const animationParams = {
-  overlay:  ["1s    ease", "1s    ease"],
-  image:    ["0.75s ease", "0.75s ease"],
-  links:    ["0.5s  ease", "0.5s  ease"],
+  overlay: ["1s ease", "1s     ease"],
+  image: ["0.75s ease", "0.75s ease"],
+  links: ["0.5s ease", "0.5s   ease"],
 };
+
+const MenuContacts = styled.div`
+  animation: show-links ${animationParams.links[0]} forwards;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: ${colors.WHITE};
+  font-family: Maison Neue Book;
+  font-size: 1.6875rem;
+  margin: 4rem 6rem;
+  text-align: end;
+
+  &.close {
+    animation: hide-links ${animationParams.links[1]} forwards;
+  }
+`;
+
+const IconContainer = styled(Link)`
+  display: inline-flex;
+  border: 1px solid ${colors.GOLD};
+  border-radius: 3rem;
+  padding: 1.125rem;
+  margin-top: 1rem;
+  background-color: transparent;
+  transition: background-color 0.5s ease;
+
+  :hover {
+    background-color: ${colors.GOLD}87;
+  }
+`;
 
 const MenuOverlay = styled.div`
   @keyframes open-overlay {
@@ -123,7 +171,7 @@ const LinksWrapper = styled.div`
   }
 
   animation: show-links ${animationParams.links[0]} forwards;
-  margin-top: 19rem;
+  margin-top: 17rem;
   margin-left: 8.4375rem;
   opacity: 0;
 
@@ -146,6 +194,17 @@ const MenuLink = styled(Link)`
   }
   /* style for active link */
   &[aria-current="page"] {
+    text-decoration: line-through;
+  }
+`;
+
+const ContactLink = styled(Link)`
+  width: 100%;
+  display: inline-block;
+  padding-top: 0.2rem;
+
+  &:hover,
+  &:focus {
     text-decoration: line-through;
   }
 `;

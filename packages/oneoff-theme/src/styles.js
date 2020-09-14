@@ -4,9 +4,10 @@ import CircularStd    from "../fonts/circular-std-medium.ttf";
 import CircularBlack  from "../fonts/circular-std-black.ttf";
 import CircularBook   from "../fonts/circular-std-book.ttf";
 import CircularBold   from "../fonts/circular-std-bold.ttf";
+import MaisonNeueBook   from "../fonts/maison-neue-book.ttf";
 
 export const colors = {
-  GOLD: "#B48E70",
+  GOLD: "#b48e70",
   GOLD_DARKER: "#ba835f",
   WHITE: "#fff",
   MENU_BACKGROUND: "#000",
@@ -48,6 +49,13 @@ export const globalStyles = css`
   font-weight: normal;
   font-display: fallback;
   src: url("${CircularBold}") format("truetype");
+}
+@font-face {
+  font-family: "Maison Neue Book";
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: url("${MaisonNeueBook}") format("truetype");
 }
 body {
   overflow-y: hidden;

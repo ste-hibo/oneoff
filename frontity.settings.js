@@ -40,6 +40,9 @@ const settings = {
               "/contacts/"
             ]
           ],
+          "socials": {
+            "instagram": "https://www.instagram.com/"
+          },
           "featured": {
             "showOnList": false,
             "showOnPost": false

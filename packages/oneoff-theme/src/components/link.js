@@ -11,7 +11,7 @@ const Link = ({
   "aria-current": ariaCurrent,
 }) => {
   const onClick = (event) => {
-    if (!link.startsWith("http")) {
+    if (link.startsWith("/")) {
       event.preventDefault();
       
       actions.router.set(link);
@@ -23,7 +23,7 @@ const Link = ({
   return (
     <a
       href={link}
-      target={link.startsWith("http") ? "_blank" : "auto"}
+      target={link ? link.startsWith("http") ? "_blank" : "auto" : null}
       onClick={onClick}
       className={className}
       aria-current={ariaCurrent}
