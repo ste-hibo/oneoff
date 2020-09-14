@@ -24,6 +24,10 @@ const BottomLinks = ({ state }) => {
 export default connect(BottomLinks);
 
 const GoldenLink = styled(Link)`
+  &:hover,
+  &:focus {
+    text-decoration: line-through;
+  }
 `;
 
 const LinksContainer = styled.div`
