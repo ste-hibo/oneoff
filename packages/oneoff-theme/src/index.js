@@ -21,6 +21,7 @@ const oneoffTheme = {
       isMenuOpen: false,
       menuIsClosing: false,
       menuIsOpening: false,
+      scrollProgress: 0,
       featured: {
         showOnList: false,
         showOnPost: false,

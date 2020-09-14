@@ -3,7 +3,7 @@ import { connect, styled } from "frontity";
 import Slider from "./blocks/Slider";
 
 const Page = ({ state }) => {
-  const [scrollTop, setScrollTop] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const outerWrapper = useRef(null);
 
   const data = state.source.get(state.router.link);
@@ -11,7 +11,10 @@ const Page = ({ state }) => {
   const blocks = page.acf ? page.acf.blocks : [];
 
   const handleScroll = (ev) => {
-    setScrollTop(outerWrapper.current.scrollTop);
+    const {scrollTop, offsetHeight} = outerWrapper.current;
+    const percent = scrollTop * 100 / offsetHeight;
+
+    setScrollProgress(percent);
   };
 
   useEffect(() => {
@@ -25,9 +28,9 @@ const Page = ({ state }) => {
     };
   }, [outerWrapper]);
 
-  // useEffect(() => {
-  //   console.log(scrollTop);
-  // }, [scrollTop]);
+  useEffect(() => {
+    state.theme.scrollProgress = scrollProgress;
+  }, [scrollProgress]);
 
   const createSingleBlock = (block, i) => {
     const layout = block.acf_fc_layout;

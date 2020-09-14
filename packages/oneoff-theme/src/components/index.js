@@ -7,7 +7,8 @@ import Title from "./title";
 import Page from "./page";
 import PageError from "./page-error";
 import Menu from "./menu";
-import BottomLinks from "./BottomLinks";
+import BottomLinks from "./bottom-links";
+import ProgressBar from "./progress-bar";
 import { globalStyles } from "../styles.js";
 
 /**
@@ -46,6 +47,7 @@ const Theme = ({ state }) => {
           <PageError when={data.isError} />
         </Switch>
         <BottomLinks />
+        <ProgressBar />
       </Main>
     </>
   );
