@@ -15,6 +15,7 @@ export default connect(ProgressBar);
 const BarContainer = styled.div`
   position: absolute;
   bottom: 0;
+  z-index: -1;
 `;
 
 const BarStyled = styled.div`

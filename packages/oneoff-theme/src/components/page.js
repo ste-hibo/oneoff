@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect, styled } from "frontity";
 import Slider from "./blocks/Slider";
+import WceeBlock from "./blocks/WceeBlock";
 
 const Page = ({ state }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -11,8 +12,8 @@ const Page = ({ state }) => {
   const blocks = page.acf ? page.acf.blocks : [];
 
   const handleScroll = (ev) => {
-    const {scrollTop, offsetHeight} = outerWrapper.current;
-    const percent = scrollTop * 100 / offsetHeight;
+    const {scrollTop, scrollWidth, offsetHeight} = outerWrapper.current;
+    const percent = scrollTop * 100 / (scrollWidth - offsetHeight);
 
     setScrollProgress(percent);
   };
@@ -40,19 +41,19 @@ const Page = ({ state }) => {
         return <Slider key={`${layout}_${i}`} data={block}></Slider>;
 
       case "wcee_panel":
-        return wceePanel(block);
+        return <WceeBlock key={`${layout}_${i}`} data={block}></WceeBlock>;
 
       case "text":
-        return textBlock(block);
+        // return textBlock(block);
 
       case "big_words":
-        return bigWordsBlock(block);
+        // return bigWordsBlock(block);
 
       case "contact_panel":
-        return contactPanel(block);
+        // return contactPanel(block);
 
       case "text_and_images":
-        return textAndImagesBlock(block);
+        // return textAndImagesBlock(block);
 
       default:
         return <div>This block is not configured yet.</div>;
@@ -80,13 +81,13 @@ export default connect(Page);
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: ${(props) => props.blocks.length * 100}vw;
+  width: fit-content;
   transform: rotate(90deg) translateY(-100vh);
   transform-origin: top left;
 `;
 
 const OuterWrapper = styled.div`
-  width: 100vh;
+  width: auto;
   height: 100vw;
   transform: rotate(-90deg) translateX(-100vh);
   transform-origin: top left;
