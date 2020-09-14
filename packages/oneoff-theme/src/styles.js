@@ -5,6 +5,7 @@ import CircularBlack  from "../fonts/circular-std-black.ttf";
 import CircularBook   from "../fonts/circular-std-book.ttf";
 import CircularBold   from "../fonts/circular-std-bold.ttf";
 import MaisonNeueBook   from "../fonts/maison-neue-book.ttf";
+import MaisonNeueLight   from "../fonts/maison-neue-light.ttf";
 
 export const colors = {
   GOLD: "#b48e70",
@@ -56,6 +57,13 @@ export const globalStyles = css`
   font-weight: normal;
   font-display: fallback;
   src: url("${MaisonNeueBook}") format("truetype");
+}
+@font-face {
+  font-family: "Maison Neue Light";
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: url("${MaisonNeueLight}") format("truetype");
 }
 body {
   overflow-y: hidden;
