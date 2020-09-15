@@ -10,9 +10,9 @@ import MaisonNeueLight   from "../fonts/maison-neue-light.ttf";
 export const colors = {
   GOLD: "#b48e70",
   GOLD_DARKER: "#ba835f",
-  WHITE: "#fff",
-  MENU_BACKGROUND: "#000",
-  BLACK: "#000",
+  WHITE: "#ffffff",
+  MENU_BACKGROUND: "#000000",
+  BLACK: "#000000",
 }
 
 export const globalStyles = css`

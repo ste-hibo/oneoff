@@ -8,12 +8,21 @@ const Slider = ({ data }) => {
     <>
       <SliderStyled img={images[0].url}>
         <Content dangerouslySetInnerHTML={{ __html: content }}></Content>
+        <Gradient/>
       </SliderStyled>
     </>
   );
 };
 
 export default Slider;
+
+const Gradient = styled.div`
+  width: 100%;
+  height: 16rem;
+  bottom: 0;
+  position: absolute;
+  background-image: linear-gradient(0deg, #2E2E2E, transparent);
+`;
 
 const SliderStyled = styled.div`
   position: relative;

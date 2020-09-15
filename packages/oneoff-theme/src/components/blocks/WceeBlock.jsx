@@ -21,7 +21,7 @@ const WceeStyled = styled.h1`
   font-size: 6.25rem;
   font-family: Circular Bold;
   color: transparent;
-  -webkit-text-stroke: 1px ${colors.WHITE};
+  -webkit-text-stroke: 1px ${colors.WHITE}61;
   transition: color .5s;
 
   /* style for active section */
