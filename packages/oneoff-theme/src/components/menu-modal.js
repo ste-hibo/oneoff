@@ -19,9 +19,7 @@ const MenuModal = ({ state }) => {
           <ContactLink link="mailto:https://projects@oneoff.it">
             projects@oneoff.it
           </ContactLink>
-          <ContactLink link="tel:+390439029391">
-            +39 0439 02 93 91
-          </ContactLink>
+          <ContactLink link="tel:+390439029391">+39 0439 02 93 91</ContactLink>
         </MenuContacts>
       </MenuOverlay>
       <MenuContent>
@@ -79,10 +77,17 @@ const IconContainer = styled(Link)`
   padding: 1.125rem;
   margin-top: 1rem;
   background-color: transparent;
-  transition: background-color 0.5s ease;
+  transition: background-color 0.35s ease;
 
   :hover {
-    background-color: ${colors.GOLD}87;
+    background-color: ${colors.GOLD};
+
+    svg {
+      path {
+        transition: fill 0.35s ease;
+        fill: ${colors.WHITE};
+      }
+    }
   }
 `;
 
