@@ -42,9 +42,11 @@ const Menu = ({ state, actions }) => {
 export default connect(Menu);
 
 const MenuToggle = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
   right: 0;
   cursor: pointer;
   margin: 4rem;
   padding: 1rem;
+  z-index: 1;
 `;

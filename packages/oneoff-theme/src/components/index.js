@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Global, connect, styled, Head } from "frontity";
 import Switch from "@frontity/components/switch";
 import Header from "./header";
@@ -11,6 +11,9 @@ import BottomLinks from "./bottom-links";
 import ProgressBar from "./progress-bar";
 import { globalStyles } from "../styles.js";
 
+let scrollPos = 0;
+let moving = false;
+
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -18,6 +21,90 @@ import { globalStyles } from "../styles.js";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
+
+  const SPEED = 90;
+  const SMOOTH = 12;
+
+  const [scrollTarget, setScrollTarget] = useState(null);
+  const [scrollProgress, setScrollProgress] = useState({
+    percent: 0,
+    value: 0,
+  });
+
+  useEffect(() => {
+    setScrollTarget(document.body.parentNode);
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTarget) return;
+
+    scrollToStart();
+
+    window.addEventListener("wheel", handleScroll, { passive: false });
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+    };
+  }, [scrollTarget]);
+
+  useEffect(() => {
+    state.theme.scrollProgress = scrollProgress;
+  }, [scrollProgress]);
+
+  const scrollToStart = () => {
+    scrollPos = 0;
+    calculateScrollPos(0);
+    window.requestAnimationFrame(updateScrollPosition);
+  };
+
+  const handleScroll = (e) => {
+    if (!scrollTarget || state.theme.menuIsOpening) return;
+
+    e.preventDefault();
+
+    // SMOOTH scroll
+    let delta;
+    if (e.detail) {
+      if (e.wheelDelta)
+        delta = (e.wheelDelta / e.detail / 40) * (e.detail > 0 ? 1 : -1);
+      else delta = -e.detail / 3;
+    } else {
+      delta = e.wheelDelta / 120;
+    }
+
+    calculateScrollPos(delta);
+
+    if (!moving) {
+      updateScrollPosition();
+    }
+  };
+
+  const calculateScrollPos = (delta) => {
+    scrollPos += -delta * SPEED;
+    scrollPos = Math.max(
+      0,
+      Math.min(scrollPos, scrollTarget.scrollWidth - scrollTarget.clientWidth)
+    );
+
+    const percent =
+      (scrollPos * 100) / (scrollTarget.scrollWidth - scrollTarget.offsetWidth);
+    setScrollProgress({ percent: percent, value: scrollPos });
+  };
+
+  const updateScrollPosition = () => {
+    if (!scrollTarget) return;
+
+    moving = true;
+
+    const delta = (scrollPos - scrollTarget.scrollLeft) / SMOOTH;
+
+    scrollTarget.scrollLeft += delta;
+
+    if (Math.abs(delta) > 0) {
+      window.requestAnimationFrame(updateScrollPosition);
+    } else {
+      moving = false;
+    }
+  };
 
   return (
     <>
@@ -35,7 +122,7 @@ const Theme = ({ state }) => {
       {/* Add the header of the site. */}
       <HeadContainer>
         <Header />
-        <Menu/>
+        <Menu />
       </HeadContainer>
 
       {/* Add the main section. It renders a different component depending
@@ -55,6 +142,8 @@ const Theme = ({ state }) => {
 
 export default connect(Theme);
 
-const HeadContainer = styled.div``;
+const HeadContainer = styled.div`
+  position: fixed;
+`;
 
 const Main = styled.div``;

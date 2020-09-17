@@ -14,14 +14,13 @@ const MenuModal = ({ state }) => {
 
   return (
     <>
-      <MenuOverlay className={menuIsClosing ? closeClass : ""}>
-        <MenuContacts className={menuIsClosing ? closeClass : ""}>
-          <ContactLink link="mailto:https://projects@oneoff.it">
-            projects@oneoff.it
-          </ContactLink>
-          <ContactLink link="tel:+390439029391">+39 0439 02 93 91</ContactLink>
-        </MenuContacts>
-      </MenuOverlay>
+      <MenuOverlay className={menuIsClosing ? closeClass : ""} />
+      <MenuContacts className={menuIsClosing ? closeClass : ""}>
+        <ContactLink link="mailto:https://projects@oneoff.it">
+          projects@oneoff.it
+        </ContactLink>
+        <ContactLink link="tel:+390439029391">+39 0439 02 93 91</ContactLink>
+      </MenuContacts>
       <MenuContent>
         <MenuImage
           src={backgroundImageUrl}
@@ -94,27 +93,28 @@ const IconContainer = styled(Link)`
 const MenuOverlay = styled.div`
   @keyframes open-overlay {
     0% {
-      width: 0;
+      transform: translateX(100vw);
     }
     100% {
-      width: 100vw;
+      transform: translateX(0);
     }
   }
 
   @keyframes close-overlay {
     0% {
-      width: 100vw;
+      transform: translateX(0);
     }
     100% {
-      width: 0;
+      transform: translateX(100vw);
     }
   }
 
   background-color: ${colors.MENU_BACKGROUND};
-  float: right;
+  float: left;
   animation: open-overlay ${animationParams.overlay[0]} forwards;
-  width: 0;
+  width: 100vw;
   height: 100vh;
+  transform: translateX(100vw);
 
   &.close {
     animation: close-overlay ${animationParams.overlay[1]} forwards;
@@ -131,24 +131,24 @@ const MenuContent = styled.div`
 const MenuImage = styled(Image)`
   @keyframes open-image {
     0% {
-      transform: translate(0, 100vh);
+      transform: translateY(100vh);
     }
     100% {
-      transform: translate(0, 0);
+      transform: translateY(0);
     }
   }
 
   @keyframes close-image {
     0% {
-      transform: translate(0, 0);
+      transform: translateY(0);
     }
     100% {
-      transform: translate(0, 100vh);
+      transform: translateY(100vh);
     }
   }
 
   height: 100vh;
-  transform: translate(0, 100vh);
+  transform: translateY(100vh);
   animation: open-image ${animationParams.image[0]} forwards;
 
   &.close {
@@ -176,7 +176,8 @@ const LinksWrapper = styled.div`
   }
 
   animation: show-links ${animationParams.links[0]} forwards;
-  margin-top: 17rem;
+  margin-top: auto;
+  margin-bottom: auto;
   margin-left: 8.4375rem;
   opacity: 0;
 

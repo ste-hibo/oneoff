@@ -1,37 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { connect, styled } from "frontity";
 import Slider from "./blocks/Slider";
-import WceeBlock from "./blocks/WceeBlock";
+import WceeBlock from "./blocks/StickyPanel";
 
 const Page = ({ state }) => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const outerWrapper = useRef(null);
-
   const data = state.source.get(state.router.link);
   const page = state.source[data.type][data.id];
   const blocks = page.acf ? page.acf.blocks : [];
-
-  const handleScroll = (ev) => {
-    const {scrollTop, scrollWidth, offsetHeight} = outerWrapper.current;
-    const percent = scrollTop * 100 / (scrollWidth - offsetHeight);
-
-    setScrollProgress(percent);
-  };
-
-  useEffect(() => {
-    if (outerWrapper.current) {
-      outerWrapper.current.addEventListener("scroll", handleScroll, true);
-    }
-    return () => {
-      if (outerWrapper.current) {
-        outerWrapper.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [outerWrapper]);
-
-  useEffect(() => {
-    state.theme.scrollProgress = scrollProgress;
-  }, [scrollProgress]);
 
   const createSingleBlock = (block, i) => {
     const layout = block.acf_fc_layout;
@@ -53,10 +28,10 @@ const Page = ({ state }) => {
         // return contactPanel(block);
 
       case "text_and_images":
-        // return textAndImagesBlock(block);
+        // return <div key={`${layout}_${i}`} id="create"></div>
 
       default:
-        return <div>This block is not configured yet.</div>;
+        return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
     }
   };
 
@@ -65,7 +40,7 @@ const Page = ({ state }) => {
   };
 
   return blocks ? (
-    <OuterWrapper ref={outerWrapper}>
+    <OuterWrapper>
       <Wrapper blocks={blocks}>{renderBlocks()}</Wrapper>
     </OuterWrapper>
   ) : (
@@ -82,19 +57,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: fit-content;
-  transform: rotate(90deg) translateY(-100vh);
-  transform-origin: top left;
 `;
 
 const OuterWrapper = styled.div`
   width: auto;
   height: 100vw;
-  transform: rotate(-90deg) translateX(-100vh);
-  transform-origin: top left;
-  overflow-y: scroll;
-  overflow-x: hidden;
   position: absolute;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   z-index: -10;
 `;

@@ -11,8 +11,9 @@ export const colors = {
   GOLD: "#b48e70",
   GOLD_DARKER: "#ba835f",
   WHITE: "#ffffff",
-  MENU_BACKGROUND: "#000000",
   BLACK: "#000000",
+  MENU_BACKGROUND: "#000000",
+  SLIDER_GRADIENT: "#131313",
 }
 
 export const globalStyles = css`

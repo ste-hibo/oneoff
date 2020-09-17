@@ -35,7 +35,7 @@ const LinksContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   z-index: -1;
 `;

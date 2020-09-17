@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "frontity";
+import { colors } from "../../styles";
 
 const Slider = ({ data }) => {
   const { images, content } = data;
@@ -21,7 +22,7 @@ const Gradient = styled.div`
   height: 16rem;
   bottom: 0;
   position: absolute;
-  background-image: linear-gradient(0deg, #2E2E2E, transparent);
+  background-image: linear-gradient(0deg, ${colors.SLIDER_GRADIENT}, transparent);
 `;
 
 const SliderStyled = styled.div`
@@ -31,6 +32,7 @@ const SliderStyled = styled.div`
   background: url("${(props) => props.img}");
   background-size: 100vw auto;
   background-position: 0 50%;
+  z-index: -1;
 `;
 
 const Content = styled.div`

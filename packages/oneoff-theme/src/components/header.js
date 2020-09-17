@@ -9,19 +9,19 @@ const Header = ({ state }) => {
   const menuOn = menuIsOpening && !menuIsClosing;
 
   return (
-    <Container menuOn={menuOn}>
+    <LogoWrapper menuOn={menuOn}>
       <LogoLink link="/">
         <Logo blendMode={menuOn ? "normal" : "difference"} />
         <SubLogo color={menuOn ? colors.WHITE : colors.GOLD} />
       </LogoLink>
-    </Container>
+    </LogoWrapper>
   );
 };
 
 export default connect(Header);
 
-const Container = styled.div`
-  position: absolute;
+const LogoWrapper = styled.div`
+  position: fixed;
   max-width: 100%;
   box-sizing: border-box;
   padding: 5rem;
