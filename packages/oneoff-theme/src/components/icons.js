@@ -75,6 +75,7 @@ export const Logo = ({ blendMode }) => {
 
 export const SubLogo = ({ color }) => {
   return (
+    <SubLogoStyle>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="132.129"
@@ -162,6 +163,7 @@ export const SubLogo = ({ color }) => {
         fill={color}
       />
     </svg>
+    </SubLogoStyle>
   );
 };
 
@@ -194,6 +196,12 @@ export const InstagramIcon = () => {
 };
 
 const LogoStyle = styled.div`
+  position: fixed;
   mix-blend-mode: ${(props) => props.blendMode};
   padding-bottom: 0.25rem;
+`;
+
+const SubLogoStyle = styled.div`
+  position: fixed;
+  top: 6.7rem;
 `;

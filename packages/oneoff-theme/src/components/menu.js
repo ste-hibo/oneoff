@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import { CloseIcon, MenuIcon } from "./icons";
-import MenuModal from "./menu-modal";
 
 const Menu = ({ state, actions }) => {
   const { isMenuOpen, menuIsOpening, menuIsClosing } = state.theme;
@@ -16,26 +15,25 @@ const Menu = ({ state, actions }) => {
   useEffect(() => {
     setTimeout(() => {
       if (menuIsOpening) {
-        actions.theme.setMenuOpen()
+        actions.theme.setMenuOpen();
       }
     }, menuToggleTimeout);
-  }, [menuIsOpening])
+  }, [menuIsOpening]);
 
   useEffect(() => {
     setTimeout(() => {
       if (menuIsClosing) {
-        actions.theme.setMenuClose()
+        actions.theme.setMenuClose();
       }
     }, menuToggleTimeout);
-  }, [menuIsClosing])
+  }, [menuIsClosing]);
 
   return (
-    <>
-      <MenuToggle onClick={!isMenuOpen ? actions.theme.openMenu : actions.theme.closeMenu}>
-        {menuIsOpening && !menuIsClosing ? <CloseIcon /> : <MenuIcon />}
-      </MenuToggle>
-      {menuIsOpening ? <MenuModal /> : null}
-    </>
+    <MenuToggle
+      onClick={!isMenuOpen ? actions.theme.openMenu : actions.theme.closeMenu}
+    >
+      {menuIsOpening && !menuIsClosing ? <CloseIcon /> : <MenuIcon />}
+    </MenuToggle>
   );
 };
 

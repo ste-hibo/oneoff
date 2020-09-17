@@ -10,15 +10,15 @@ import Menu from "./menu";
 import BottomLinks from "./bottom-links";
 import ProgressBar from "./progress-bar";
 import { globalStyles } from "../styles.js";
+import MenuModal from "./menu-modal";
 
 let scrollPos = 0;
 let moving = false;
 
-/**
- * Theme is the root React component of our theme. The one we will export
- * in roots.
- */
 const Theme = ({ state }) => {
+  const { menuIsOpening, menuIsClosing } = state.theme;
+  const menuOn = menuIsOpening && !menuIsClosing;
+
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
 
@@ -120,7 +120,7 @@ const Theme = ({ state }) => {
       <Global styles={globalStyles} />
 
       {/* Add the header of the site. */}
-      <HeadContainer>
+      <HeadContainer menuOn={menuOn}>
         <Header />
         <Menu />
       </HeadContainer>
@@ -136,6 +136,8 @@ const Theme = ({ state }) => {
         <BottomLinks />
         <ProgressBar />
       </Main>
+
+      {menuIsOpening ? <MenuModal /> : null}
     </>
   );
 };
@@ -143,7 +145,8 @@ const Theme = ({ state }) => {
 export default connect(Theme);
 
 const HeadContainer = styled.div`
-  position: fixed;
+  position: absolute;
+  z-index: ${(props) => props.menuOn ? "10" : "auto"};
 `;
 
 const Main = styled.div``;

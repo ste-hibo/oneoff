@@ -55,7 +55,7 @@ const animationParams = {
 
 const MenuContacts = styled.div`
   animation: show-links ${animationParams.links[0]} forwards;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   color: ${colors.WHITE};
@@ -109,6 +109,7 @@ const MenuOverlay = styled.div`
     }
   }
 
+  position: fixed;
   background-color: ${colors.MENU_BACKGROUND};
   float: left;
   animation: open-overlay ${animationParams.overlay[0]} forwards;
@@ -125,7 +126,7 @@ const MenuContent = styled.div`
   color: ${colors.WHITE};
   display: flex;
   background-color: transparent;
-  position: absolute;
+  position: fixed;
 `;
 
 const MenuImage = styled(Image)`

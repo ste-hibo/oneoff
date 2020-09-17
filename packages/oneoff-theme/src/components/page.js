@@ -31,7 +31,7 @@ const Page = ({ state }) => {
         // return <div key={`${layout}_${i}`} id="create"></div>
 
       default:
-        return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
+        // return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
     }
   };
 

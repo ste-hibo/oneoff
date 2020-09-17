@@ -9,7 +9,7 @@ const Header = ({ state }) => {
   const menuOn = menuIsOpening && !menuIsClosing;
 
   return (
-    <LogoWrapper menuOn={menuOn}>
+    <LogoWrapper>
       <LogoLink link="/">
         <Logo blendMode={menuOn ? "normal" : "difference"} />
         <SubLogo color={menuOn ? colors.WHITE : colors.GOLD} />
@@ -21,19 +21,10 @@ const Header = ({ state }) => {
 export default connect(Header);
 
 const LogoWrapper = styled.div`
-  position: fixed;
   max-width: 100%;
-  box-sizing: border-box;
   padding: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   pointer-events: none;
-  z-index: ${(props) => props.menuOn ? "10" : "auto"};
 `;
 
 const LogoLink = styled(Link)`
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
 `;
