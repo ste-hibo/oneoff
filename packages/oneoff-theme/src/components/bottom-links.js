@@ -33,10 +33,9 @@ const GoldenLink = styled(Link)`
 const LinksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   width: 100vw;
   position: fixed;
-  pointer-events: none;
+  bottom: 0;
   z-index: -1;
 `;
 

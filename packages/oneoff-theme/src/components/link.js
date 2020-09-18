@@ -31,7 +31,7 @@ const Link = ({
       onClick={onClick}
       className={className}
       aria-current={ariaCurrent}
-      style={{ pointerEvents: "auto", ...style }}
+      style={{ ...style }}
     >
       {children}
     </a>

@@ -23,7 +23,6 @@ export default connect(Header);
 const LogoWrapper = styled.div`
   max-width: 100%;
   padding: 5rem;
-  pointer-events: none;
 `;
 
 const LogoLink = styled(Link)`
