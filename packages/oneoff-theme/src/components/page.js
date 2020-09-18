@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, styled } from "frontity";
 import Slider from "./blocks/Slider";
-import WceeBlock from "./blocks/StickyPanel";
+import StickyPanel from "./blocks/StickyPanel";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -15,8 +15,8 @@ const Page = ({ state }) => {
       case "slider":
         return <Slider key={`${layout}_${i}`} data={block}></Slider>;
 
-      case "wcee_panel":
-        return <WceeBlock key={`${layout}_${i}`} data={block}></WceeBlock>;
+      case "sticky_panel":
+        return <StickyPanel key={`${layout}_${i}`} data={block}></StickyPanel>;
 
       case "text":
         // return textBlock(block);
