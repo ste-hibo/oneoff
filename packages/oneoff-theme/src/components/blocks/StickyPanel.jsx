@@ -3,10 +3,12 @@ import { connect, styled } from "frontity";
 import { colors } from "../../styles";
 import Link from "../link";
 
-const StickyPanel = ({ actions, state, data }) => {
+const PERCENT_TOLLERANCE = 2;
+
+const StickyPanel = ({ actions, state, data, id }) => {
   const { content, sections } = data;
 
-  let activeOnReaching = sections.map(section => section.value);
+  let activeOnReaching = sections.map((section) => section.value - PERCENT_TOLLERANCE);
   activeOnReaching.push(100);
 
   const drawSections = () => {
@@ -25,7 +27,7 @@ const StickyPanel = ({ actions, state, data }) => {
               key={`${section.text}_${section.value}`}
               aria-current={isActive}
               onClick={() => {
-                actions.theme.scrollTo(section.value)
+                actions.theme.scrollTo(section.value);
               }}
             >
               {section.text}
@@ -36,16 +38,12 @@ const StickyPanel = ({ actions, state, data }) => {
   };
 
   return (
-    <>
-      <PanelStyled>
-        <ContentWrapper>
-          <SectionsStyled>{drawSections()}</SectionsStyled>
-          <TextStyled
-            dangerouslySetInnerHTML={{ __html: content }}
-          ></TextStyled>
-        </ContentWrapper>
-      </PanelStyled>
-    </>
+    <PanelStyled id={id}>
+      <ContentWrapper>
+        <SectionsStyled>{drawSections()}</SectionsStyled>
+        <TextStyled dangerouslySetInnerHTML={{ __html: content }}></TextStyled>
+      </ContentWrapper>
+    </PanelStyled>
   );
 };
 
@@ -90,6 +88,7 @@ const PanelStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 `;
 
 const TextStyled = styled.div`
