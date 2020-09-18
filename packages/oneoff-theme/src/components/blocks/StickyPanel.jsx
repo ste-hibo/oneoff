@@ -3,31 +3,32 @@ import { connect, styled } from "frontity";
 import { colors } from "../../styles";
 import Link from "../link";
 
-const StickyPanel = ({ state, data }) => {
+const StickyPanel = ({ actions, state, data }) => {
   const { content, sections } = data;
 
-  const activeOnReaching = [
-    72.2, 75, 79, 82, 100
-  ]
+  let activeOnReaching = sections.map(section => section.value);
+  activeOnReaching.push(100);
 
   const drawSections = () => {
     const { scrollProgress } = state.theme;
 
     return sections
       ? sections.map((section, i) => {
-        const isActive =
-          scrollProgress.percent >= activeOnReaching[i] &&
-          scrollProgress.percent < activeOnReaching[i + 1]
-            ? "true"
-            : "";
+          const isActive =
+            scrollProgress.percent > activeOnReaching[i] &&
+            scrollProgress.percent <= activeOnReaching[i + 1]
+              ? "true"
+              : "";
 
           return (
             <StyledLink
-              key={section.link.title}
+              key={`${section.text}_${section.value}`}
               aria-current={isActive}
-              link={section.link.url}
+              onClick={() => {
+                actions.theme.scrollTo(section.value)
+              }}
             >
-              {section.link.title}
+              {section.text}
             </StyledLink>
           );
         })
@@ -39,7 +40,9 @@ const StickyPanel = ({ state, data }) => {
       <PanelStyled>
         <ContentWrapper>
           <SectionsStyled>{drawSections()}</SectionsStyled>
-          <TextStyled dangerouslySetInnerHTML={{ __html: content }}></TextStyled>
+          <TextStyled
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></TextStyled>
         </ContentWrapper>
       </PanelStyled>
     </>
@@ -52,13 +55,13 @@ const StyledLink = styled(Link)`
   color: transparent;
   -webkit-text-stroke: 1px ${colors.WHITE}61;
   transition: color 0.5s;
+  cursor: pointer;
 
   &[aria-current="true"] {
     color: ${colors.GOLD};
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: ${colors.GOLD};
   }
 
@@ -84,6 +87,9 @@ const PanelStyled = styled.div`
   width: 36vw;
   height: 100vh;
   background-color: ${colors.BLACK};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TextStyled = styled.div`

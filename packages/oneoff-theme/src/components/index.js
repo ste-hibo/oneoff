@@ -13,9 +13,9 @@ import { globalStyles } from "../styles.js";
 import MenuModal from "./menu-modal";
 
 let scrollPos = 0;
-let moving = false;
+let isScrolling = false;
 
-const Theme = ({ state }) => {
+const Theme = ({ actions, state }) => {
   const { menuIsOpening, menuIsClosing } = state.theme;
   const menuOn = menuIsOpening && !menuIsClosing;
 
@@ -26,10 +26,6 @@ const Theme = ({ state }) => {
   const SMOOTH = 12;
 
   const [scrollTarget, setScrollTarget] = useState(null);
-  const [scrollProgress, setScrollProgress] = useState({
-    percent: 0,
-    value: 0,
-  });
 
   useEffect(() => {
     setScrollTarget(document.body.parentNode);
@@ -38,7 +34,7 @@ const Theme = ({ state }) => {
   useEffect(() => {
     if (!scrollTarget) return;
 
-    scrollToStart();
+    scrollTo(0);
 
     window.addEventListener("wheel", handleScroll, { passive: false });
     return () => {
@@ -47,21 +43,33 @@ const Theme = ({ state }) => {
   }, [scrollTarget]);
 
   useEffect(() => {
-    state.theme.scrollProgress = scrollProgress;
-  }, [scrollProgress]);
+    scrollTo(state.theme.scrollTo);
+  }, [state.theme.updateScrollPos])
 
-  const scrollToStart = () => {
-    scrollPos = 0;
-    calculateScrollPos(0);
-    window.requestAnimationFrame(updateScrollPosition);
-  };
+  const scrollTo = (value) => {
+    if (!scrollTarget) return;
+
+    const position = percentToScrollPosition(value);
+    const delta = scrollPos - position <= 0 ? 1 : -1;
+
+    scrollPos = position;
+    calculateScrollPos(delta);
+    if (!isScrolling) {
+      updateScrollPosition();
+    }
+  }
+
+  const percentToScrollPosition = (value) => {
+      const position = (scrollTarget.scrollWidth - scrollTarget.offsetWidth) * value / 100;
+      return position;
+  }
 
   const handleScroll = (e) => {
     if (!scrollTarget || state.theme.menuIsOpening) return;
 
     e.preventDefault();
 
-    // SMOOTH scroll
+    // smooth scroll
     let delta;
     if (e.detail) {
       if (e.wheelDelta)
@@ -72,8 +80,7 @@ const Theme = ({ state }) => {
     }
 
     calculateScrollPos(delta);
-
-    if (!moving) {
+    if (!isScrolling) {
       updateScrollPosition();
     }
   };
@@ -87,13 +94,14 @@ const Theme = ({ state }) => {
 
     const percent =
       (scrollPos * 100) / (scrollTarget.scrollWidth - scrollTarget.offsetWidth);
-    setScrollProgress({ percent: percent, value: scrollPos });
+
+    actions.theme.setScrollProgress({ percent: percent, value: scrollPos });
   };
 
   const updateScrollPosition = () => {
     if (!scrollTarget) return;
 
-    moving = true;
+    isScrolling = true;
 
     const delta = (scrollPos - scrollTarget.scrollLeft) / SMOOTH;
 
@@ -102,7 +110,7 @@ const Theme = ({ state }) => {
     if (Math.abs(delta) > 0) {
       window.requestAnimationFrame(updateScrollPosition);
     } else {
-      moving = false;
+      isScrolling = false;
     }
   };
 

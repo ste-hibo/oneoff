@@ -22,6 +22,8 @@ const oneoffTheme = {
       menuIsClosing: false,
       menuIsOpening: false,
       scrollProgress: { percent: 0, value: 0},
+      scrollTo: 0,
+      updateScrollPos: false,
       featured: {
         showOnList: false,
         showOnPost: false,
@@ -48,6 +50,16 @@ const oneoffTheme = {
         state.theme.menuIsClosing = false;
         state.theme.menuIsOpening = false;
       },
+      setScrollProgress: ({state}) => value => {
+        state.theme.scrollProgress = value;
+      },
+      scrollTo: ({state}) => value => {
+        state.theme.scrollTo = value;
+        state.theme.updateScrollPos = true;
+        setInterval(() => {
+          state.theme.updateScrollPos = false;
+        }, 1000);
+      }
     },
   },
   libraries: {
