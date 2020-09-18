@@ -6,12 +6,15 @@ import CircularBook   from "../fonts/circular-std-book.ttf";
 import CircularBold   from "../fonts/circular-std-bold.ttf";
 import MaisonNeueBook   from "../fonts/maison-neue-book.ttf";
 import MaisonNeueLight   from "../fonts/maison-neue-light.ttf";
+import MaisonNeueDemi   from "../fonts/maison-neue-demi.ttf";
 
 export const colors = {
   GOLD: "#b48e70",
   GOLD_DARKER: "#ba835f",
   WHITE: "#ffffff",
   BLACK: "#000000",
+  PRIMARY: "#000000",
+  SECONDARY: "#4C4C4C",
   MENU_BACKGROUND: "#000000",
   SLIDER_GRADIENT: "#131313",
 }
@@ -66,9 +69,17 @@ export const globalStyles = css`
   font-display: fallback;
   src: url("${MaisonNeueLight}") format("truetype");
 }
+@font-face {
+  font-family: "Maison Neue Demi";
+  font-style: normal;
+  font-weight: normal;
+  font-display: fallback;
+  src: url("${MaisonNeueDemi}") format("truetype");
+}
+
 body {
   overflow-y: hidden;
-  color: ${colors.BLACK};
+  color: ${colors.PRIMARY};
   margin: 0;
   font-family: Circular Std, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -2,6 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 import Slider from "./blocks/Slider";
 import StickyPanel from "./blocks/StickyPanel";
+import TextAndImages from "./blocks/TextAndImages";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -10,28 +11,29 @@ const Page = ({ state }) => {
 
   const createSingleBlock = (block, i) => {
     const layout = block.acf_fc_layout;
+    const id = `${layout}_${i}`;
 
     switch (layout) {
       case "slider":
-        return <Slider key={`${layout}_${i}`} data={block}></Slider>;
+        return <Slider key={`${layout}_${i}`} id={id} data={block} />;
 
       case "sticky_panel":
-        return <StickyPanel key={`${layout}_${i}`} data={block}></StickyPanel>;
+        return <StickyPanel key={`${layout}_${i}`} id={id} data={block} />;
 
       case "text":
-        // return textBlock(block);
+      // return textBlock(block);
 
       case "big_words":
-        // return bigWordsBlock(block);
+      // return bigWordsBlock(block);
 
       case "contact_panel":
-        // return contactPanel(block);
+      // return contactPanel(block);
 
       case "text_and_images":
-        // return <div key={`${layout}_${i}`} id="create"></div>
+        return <TextAndImages key={`${layout}_${i}`} id={id} data={block} />;
 
       default:
-        // return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
+      // return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
     }
   };
 
