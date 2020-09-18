@@ -44,7 +44,7 @@ const Theme = ({ actions, state }) => {
 
   useEffect(() => {
     scrollTo(state.theme.scrollTo);
-  }, [state.theme.updateScrollPos])
+  }, [state.theme.updateScrollPos]);
 
   const scrollTo = (value) => {
     if (!scrollTarget) return;
@@ -57,12 +57,13 @@ const Theme = ({ actions, state }) => {
     if (!isScrolling) {
       updateScrollPosition();
     }
-  }
+  };
 
   const percentToScrollPosition = (value) => {
-      const position = (scrollTarget.scrollWidth - scrollTarget.offsetWidth) * value / 100;
-      return position;
-  }
+    const position =
+      ((scrollTarget.scrollWidth - scrollTarget.offsetWidth) * value) / 100;
+    return position;
+  };
 
   const handleScroll = (e) => {
     if (!scrollTarget || state.theme.menuIsOpening) return;
@@ -95,7 +96,7 @@ const Theme = ({ actions, state }) => {
     const percent =
       (scrollPos * 100) / (scrollTarget.scrollWidth - scrollTarget.offsetWidth);
 
-    actions.theme.setScrollProgress({ percent: percent, value: scrollPos });
+    actions.theme.setScrollProgress({ percent: percent.toFixed(2), value: scrollPos });
   };
 
   const updateScrollPosition = () => {
@@ -146,6 +147,22 @@ const Theme = ({ actions, state }) => {
       </Main>
 
       {menuIsOpening ? <MenuModal /> : null}
+
+      {state.theme.testing ? (
+        <div
+          style={{
+            color: "white",
+            mixBlendMode: "difference",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            opacity: 0.25,
+            padding: 5,
+          }}
+        >
+          {`${state.theme.scrollProgress.percent}% | ${state.theme.scrollProgress.value}`}
+        </div>
+      ) : null}
     </>
   );
 };
@@ -154,7 +171,7 @@ export default connect(Theme);
 
 const HeadContainer = styled.div`
   position: absolute;
-  z-index: ${(props) => props.menuOn ? "10" : "auto"};
+  z-index: ${(props) => (props.menuOn ? "10" : "auto")};
 `;
 
 const Main = styled.div``;

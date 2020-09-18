@@ -28,6 +28,7 @@ const oneoffTheme = {
         showOnList: false,
         showOnPost: false,
       },
+      testing: true
     },
   },
   /**
