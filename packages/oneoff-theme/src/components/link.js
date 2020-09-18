@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "frontity";
 
 const Link = ({
-  state,
+  onClick : onClickEvent,
   actions,
   link,
   className,
@@ -11,7 +11,11 @@ const Link = ({
   "aria-current": ariaCurrent,
 }) => {
   const onClick = (event) => {
-    if (link.startsWith("/")) {
+    if (onClickEvent) {
+      event.preventDefault();
+      onClickEvent();
+    }
+    else if (link.startsWith("/")) {
       event.preventDefault();
       
       actions.router.set(link);
