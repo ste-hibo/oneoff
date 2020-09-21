@@ -77,10 +77,17 @@ export const globalStyles = css`
   src: url("${MaisonNeueDemi}") format("truetype");
 }
 
+html, body, div, span, h1, h2, h3, h4, h5, h6, p {  
+  margin: 0;  
+  padding: 0;  
+  border: 0;  
+  font-size: 100%;  
+  font: inherit;  
+  vertical-align: baseline; 
+}
 body {
   overflow-y: hidden;
   color: ${colors.PRIMARY};
-  margin: 0;
   font-family: Circular Std, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -88,10 +95,6 @@ a,
 a:visited {
   color: inherit;
   text-decoration: none;
-}
-p {
-  margin-block-start: 0;
-  margin-block-end: 0;
 }
 ::-webkit-scrollbar {
   display:none;
