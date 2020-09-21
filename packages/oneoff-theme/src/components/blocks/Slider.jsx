@@ -32,7 +32,8 @@ const SliderStyled = styled.div`
   width: 100vw;
   height: 100vh;
   background: url("${(props) => props.img}");
-  background-size: 100vw auto;
+  // background-size: 100vw auto;
+  background-repeat: no-repeat;
   z-index: -1;
   ${(props) => props.customStyle}
 `;
