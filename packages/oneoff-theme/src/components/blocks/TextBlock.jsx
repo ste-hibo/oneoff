@@ -4,7 +4,6 @@ import { colors } from "../../styles";
 
 const TextBlock = ({ data, id }) => {
   const { title, big_text, content, background_color } = data;
-  console.log(big_text);
 
   return (
     <ContentWrapper backgroundColor={background_color} id={id}>
