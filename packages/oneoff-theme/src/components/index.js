@@ -96,7 +96,10 @@ const Theme = ({ actions, state }) => {
     const percent =
       (scrollPos * 100) / (scrollTarget.scrollWidth - scrollTarget.offsetWidth);
 
-    actions.theme.setScrollProgress({ percent: percent.toFixed(2), value: scrollPos });
+    actions.theme.setScrollProgress({
+      percent: percent.toFixed(2),
+      value: scrollPos,
+    });
   };
 
   const updateScrollPosition = () => {
@@ -136,15 +139,19 @@ const Theme = ({ actions, state }) => {
 
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
-      <Main>
-        <Switch>
-          <Loading when={data.isFetching} />
-          <Page when={data.isPage} />
-          <PageError when={data.isError} />
-        </Switch>
+      <>
+        <OuterWrapper>
+          <Wrapper>
+            <Switch>
+              <Loading when={data.isFetching} />
+              <Page when={data.isPage} />
+              <PageError when={data.isError} />
+            </Switch>
+          </Wrapper>
+        </OuterWrapper>
         <BottomLinks />
         <ProgressBar />
-      </Main>
+      </>
 
       {menuIsOpening ? <MenuModal /> : null}
 
@@ -174,4 +181,15 @@ const HeadContainer = styled.div`
   z-index: ${(props) => (props.menuOn ? "10" : "auto")};
 `;
 
-const Main = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+`;
+
+const OuterWrapper = styled.div`
+  width: auto;
+  height: 100vw;
+  position: absolute;
+  z-index: -10;
+`;

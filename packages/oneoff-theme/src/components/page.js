@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, styled } from "frontity";
+import { connect } from "frontity";
 import Slider from "./blocks/Slider";
 import StickyPanel from "./blocks/StickyPanel";
 import TextAndImages from "./blocks/TextAndImages";
@@ -42,9 +42,7 @@ const Page = ({ state }) => {
   };
 
   return blocks ? (
-    <OuterWrapper>
-      <Wrapper blocks={blocks}>{renderBlocks()}</Wrapper>
-    </OuterWrapper>
+    renderBlocks()
   ) : (
     <>
       <h1>{page.title.rendered}</h1>
@@ -54,16 +52,3 @@ const Page = ({ state }) => {
 };
 
 export default connect(Page);
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-`;
-
-const OuterWrapper = styled.div`
-  width: auto;
-  height: 100vw;
-  position: absolute;
-  z-index: -10;
-`;
