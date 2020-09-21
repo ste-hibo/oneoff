@@ -3,10 +3,10 @@ import { styled } from "frontity";
 import { colors } from "../../styles";
 
 const Slider = ({ data, id }) => {
-  const { images, content } = data;
+  const { images, content, image_custom_style } = data;
 
   return (
-    <SliderStyled id={id} img={images[0].url}>
+    <SliderStyled customStyle={image_custom_style} id={id} img={images[0].url}>
       <Content dangerouslySetInnerHTML={{ __html: content }}></Content>
       <Gradient />
     </SliderStyled>
@@ -33,8 +33,8 @@ const SliderStyled = styled.div`
   height: 100vh;
   background: url("${(props) => props.img}");
   background-size: 100vw auto;
-  background-position: 0 50%;
   z-index: -1;
+  ${(props) => props.customStyle}
 `;
 
 const Content = styled.div`
