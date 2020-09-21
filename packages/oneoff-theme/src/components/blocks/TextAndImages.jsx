@@ -2,19 +2,26 @@ import React from "react";
 import { styled } from "frontity";
 import { colors } from "../../styles";
 import Link from "../link";
+import Image from "@frontity/components/image";
 
 const TextAndImages = ({ data, id }) => {
   const { title, big_text, link, images, content } = data;
 
   return (
     <ContentWrapper id={id}>
-      <Content>
+      <Content1>
         <TitleStyled>{title}</TitleStyled>
         <BigTextStyled>{big_text}</BigTextStyled>
         <LinkStyled link={link.url}>{link.title}</LinkStyled>
-      </Content>
-      <Content></Content>
-      <Content></Content>
+      </Content1>
+      <Content2>
+        <ImageStyled src={images.img1.url} />
+      </Content2>
+      <Content3>
+        <p>{content}</p>
+        <Image src={images.img2.url} />
+        <Image src={images.img3.url} />
+      </Content3>
     </ContentWrapper>
   );
 };
@@ -30,13 +37,52 @@ const ContentWrapper = styled.div`
   z-index: 0;
 `;
 
-const Content = styled.div`
-  width: 100%;
+const Content1 = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   margin: auto;
   padding-left: 9.8rem;
-  padding-right: 10%;
+`;
+
+const Content2 = styled.div`
+  flex: 1;
+  margin: auto;
+  padding-top: 6rem;
+  padding-left: 5rem;
+
+  img {
+    box-shadow: 60px -60px ${colors.GOLD};
+  }
+`;
+
+const Content3 = styled.div`
+  flex: 2;
+  margin: auto;
+  position: relative;
+
+  p {
+    position: absolute;
+    width: 19rem;
+    bottom: 9rem;
+    right: 44rem;
+    font-family: Maison Neue Book;
+    font-size: 1.75rem;
+    text-align: right;
+  }
+
+  img:nth-of-type(1) {
+    position: absolute;
+    bottom: -22rem;
+    right: 39rem;
+  }
+
+  img:nth-of-type(2) {
+    position: absolute;
+    right: -6rem;
+    bottom: -13rem;
+    z-index: -1;
+  }
 `;
 
 const TitleStyled = styled.div`
@@ -49,6 +95,7 @@ const BigTextStyled = styled.div`
   font-size: 3.6875rem;
   font-family: Circular Std;
   margin: 2rem 0;
+  padding-right: 9rem;
 `;
 
 const LinkStyled = styled(Link)`
@@ -57,3 +104,5 @@ const LinkStyled = styled(Link)`
   color: ${colors.GOLD};
   margin-top: 2rem;
 `;
+
+const ImageStyled = styled(Image)``;
