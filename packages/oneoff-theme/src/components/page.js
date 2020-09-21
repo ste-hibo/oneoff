@@ -3,6 +3,8 @@ import { connect } from "frontity";
 import Slider from "./blocks/Slider";
 import StickyPanel from "./blocks/StickyPanel";
 import TextAndImages from "./blocks/TextAndImages";
+import TextBlock from "./blocks/TextBlock";
+import ImageBlock from "./blocks/ImageBlock";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -20,8 +22,11 @@ const Page = ({ state }) => {
       case "sticky_panel":
         return <StickyPanel key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "text":
-      // return textBlock(block);
+      case "text_block":
+        return <TextBlock key={`${layout}_${i}`} id={id} data={block} />;
+
+      case "image_block":
+        return <ImageBlock key={`${layout}_${i}`} id={id} data={block} />;
 
       case "big_words":
       // return bigWordsBlock(block);
