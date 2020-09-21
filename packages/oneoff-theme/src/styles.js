@@ -89,6 +89,10 @@ a:visited {
   color: inherit;
   text-decoration: none;
 }
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 ::-webkit-scrollbar {
   display:none;
 }

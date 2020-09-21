@@ -7,12 +7,18 @@ import Image from "@frontity/components/image";
 const TextAndImages = ({ data, id }) => {
   const { title, big_text, link, images, content } = data;
 
+  const renderLink = () => {
+    return link ? <LinkStyled link={link.url}>{link.title}</LinkStyled> : null;
+  };
+
   return (
     <ContentWrapper id={id}>
       <Content1>
         <TitleStyled>{title}</TitleStyled>
-        <BigTextStyled>{big_text}</BigTextStyled>
-        <LinkStyled link={link.url}>{link.title}</LinkStyled>
+        <BigTextStyled
+          dangerouslySetInnerHTML={{ __html: big_text }}
+        ></BigTextStyled>
+        {renderLink()}
       </Content1>
       <Content2>
         <ImageStyled src={images.img1.url} />
@@ -95,7 +101,6 @@ const BigTextStyled = styled.div`
   font-size: 3.6875rem;
   font-family: Circular Std;
   margin: 2rem 0;
-  padding-right: 9rem;
 `;
 
 const LinkStyled = styled(Link)`
