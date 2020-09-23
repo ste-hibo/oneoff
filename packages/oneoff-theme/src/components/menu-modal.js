@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
 import { colors } from "../styles";
 import { InstagramIcon } from "./icons";
 
 const MenuModal = ({ state }) => {
-  const { menu, backgroundImageUrl, contacts, menuIsClosing, socials } = state.theme;
+  const {
+    menu,
+    defaultMenuImage,
+    contacts,
+    menuIsClosing,
+    socials,
+  } = state.theme;
   const isThereLinks = menu != null && menu.length > 0;
   const closeClass = "close";
+  const menuImages = Object.fromEntries(menu);
+
+  const [menuImage, setMenuImage] = useState(defaultMenuImage);
 
   const renderContactLinks = () => {
     return contacts.map((contact, i) => (
-      <ContactLink key={`${contact[1]}_${i}`} link={contact[1]}>{contact[0]}</ContactLink>
+      <ContactLink key={`${contact[1]}_${i}`} link={contact[1]}>
+        {contact[0]}
+      </ContactLink>
     ));
+  };
+
+  const changeMenuImage = (ev) => {
+    setMenuImage(menuImages[ev.target.pathname]);
+  };
+
+  const renderOverImages = () => {
+    return menu.map(([link, image, name], i) => {
+      const visible = image === menuImage;
+      return (
+        <ImageOver
+          key={`${image}_${i}`}
+          src={image || defaultMenuImage}
+          style={{ opacity: visible ? 1 : 0 }}
+        />
+      );
+    });
   };
 
   return (
@@ -22,17 +50,18 @@ const MenuModal = ({ state }) => {
         {renderContactLinks()}
       </MenuContacts>
       <MenuContent>
-        <MenuImage
-          src={backgroundImageUrl}
-          className={menuIsClosing ? closeClass : ""}
-        />
+        <ImagesContainer className={menuIsClosing ? closeClass : ""}>
+          {renderOverImages()}
+          <MenuImage src={defaultMenuImage} />
+        </ImagesContainer>
         <LinksWrapper className={menuIsClosing ? closeClass : ""}>
           {isThereLinks &&
-            menu.map(([name, link]) => (
+            menu.map(([link, image, name]) => (
               <MenuLink
                 key={name}
                 link={link}
                 aria-current={state.router.link === link ? "page" : undefined}
+                onMouseOver={changeMenuImage}
               >
                 {name}
               </MenuLink>
@@ -63,6 +92,7 @@ const MenuContacts = styled.div`
   font-size: 1.6875rem;
   margin: 4rem 6rem;
   text-align: end;
+  z-index: 10;
 
   &.close {
     animation: hide-links ${animationParams.links[1]} forwards;
@@ -129,7 +159,7 @@ const MenuContent = styled.div`
   position: fixed;
 `;
 
-const MenuImage = styled.img`
+const ImagesContainer = styled.div`
   @keyframes open-image {
     0% {
       transform: translateY(100vh);
@@ -148,13 +178,25 @@ const MenuImage = styled.img`
     }
   }
 
-  height: 100vh;
   transform: translateY(100vh);
   animation: open-image ${animationParams.image[0]} forwards;
 
   &.close {
     animation: close-image ${animationParams.image[1]} forwards;
   }
+`;
+
+const MenuImage = styled.img`
+  height: 100vh;
+`;
+
+const ImageOver = styled.img`
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+
+  transition: opacity 0.5s;
 `;
 
 const LinksWrapper = styled.div`

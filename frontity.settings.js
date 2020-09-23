@@ -14,22 +14,27 @@ const settings = {
         "theme": {
           "menu": [
             [
+              "/about-us/",
+              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/about-us.jpg",
               "About us",
-              "/about-us/"
             ],
             [
+              "/experiences/",
+              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/experiences.jpg",
               "Experiences",
-              "/experiences/"
             ],
             [
+              "/process/",
+              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/process.jpg",
               "Process",
-              "/process/"
             ],
             [
+              "/contacts/",
+              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.jpg",
               "Contacts",
-              "/contacts/"
             ]
           ],
+          "defaultMenuImage": "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.jpg",
           "bottomLinks": [
             [
               "Follow our world",
