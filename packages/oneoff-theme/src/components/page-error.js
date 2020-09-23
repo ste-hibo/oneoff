@@ -1,5 +1,6 @@
 import React from "react";
 import { styled, connect } from "frontity";
+import { colors } from "../styles";
 
 const description404 = (
   <>
@@ -36,8 +37,11 @@ const Page404 = ({ state }) => {
 export default connect(Page404);
 
 const Container = styled.div`
-  margin: 0;
-  padding: 24px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 `;
 
@@ -45,12 +49,12 @@ const Title = styled.h1`
   margin: 0;
   margin-top: 24px;
   margin-bottom: 8px;
-  color: rgba(12, 17, 43);
+  color: ${colors.WHITE};
   font-size: 4em;
 `;
 
 const Description = styled.div`
   line-height: 1.6em;
-  color: rgba(12, 17, 43, 0.8);
+  color: ${colors.WHITE};
   margin: 24px 0;
 `;
