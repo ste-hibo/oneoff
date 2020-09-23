@@ -68,16 +68,16 @@ const settings = {
           "homepage": "/homepage",
           postTypes: [
             {
-              type: "block", // type slug
-              endpoint: "block", // REST API endpoint
-              archive: "/block_cat" // link where this custom posts are listed
+              type: "experience", // type slug
+              endpoint: "experience", // REST API endpoint
+              archive: "/experiences" // link where this custom posts are listed
             }
           ],
           taxonomies: [
             {
-              taxonomy: "block_cat", // taxonomy slug
-              endpoint: "block_cat", // REST API endpoint
-              postTypeEndpoint: "block", // endpoint from which posts from this taxonomy are fetched
+              taxonomy: "experiences", // taxonomy slug
+              endpoint: "experiences", // REST API endpoint
+              postTypeEndpoint: "experience", // endpoint from which posts from this taxonomy are fetched
             }
           ]
         }
