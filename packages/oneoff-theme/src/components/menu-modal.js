@@ -10,8 +10,8 @@ const MenuModal = ({ state }) => {
   const closeClass = "close";
 
   const renderContactLinks = () => {
-    return contacts.map((contact) => (
-      <ContactLink link={contact[1]}>{contact[0]}</ContactLink>
+    return contacts.map((contact, i) => (
+      <ContactLink key={`${contact[1]}_${i}`} link={contact[1]}>{contact[0]}</ContactLink>
     ));
   };
 
