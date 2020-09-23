@@ -2,7 +2,6 @@ import React from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
 import { colors } from "../styles";
-import Image from "@frontity/components/image";
 import { InstagramIcon } from "./icons";
 
 const MenuModal = ({ state }) => {
@@ -129,7 +128,7 @@ const MenuContent = styled.div`
   position: fixed;
 `;
 
-const MenuImage = styled(Image)`
+const MenuImage = styled.img`
   @keyframes open-image {
     0% {
       transform: translateY(100vh);
