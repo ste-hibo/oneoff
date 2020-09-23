@@ -6,7 +6,7 @@ const Slider = ({ data, id }) => {
   const { images, content, image_custom_style } = data;
 
   return (
-    <SliderStyled customStyle={image_custom_style} id={id} img={images[0].url}>
+    <SliderStyled customStyle={image_custom_style} id={id} img={images[0] ? images[0].url : ""}>
       <Content dangerouslySetInnerHTML={{ __html: content }}></Content>
       <Gradient />
     </SliderStyled>
