@@ -5,20 +5,21 @@ import { colors } from "../styles";
 import { InstagramIcon } from "./icons";
 
 const MenuModal = ({ state }) => {
-  const { menu, menuIsClosing, socials } = state.theme;
+  const { menu, backgroundImageUrl, contacts, menuIsClosing, socials } = state.theme;
   const isThereLinks = menu != null && menu.length > 0;
   const closeClass = "close";
-  const backgroundImageUrl =
-    "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.png";
+
+  const renderContactLinks = () => {
+    return contacts.map((contact) => (
+      <ContactLink link={contact[1]}>{contact[0]}</ContactLink>
+    ));
+  };
 
   return (
     <>
       <MenuOverlay className={menuIsClosing ? closeClass : ""} />
       <MenuContacts className={menuIsClosing ? closeClass : ""}>
-        <ContactLink link="mailto:https://projects@oneoff.it">
-          projects@oneoff.it
-        </ContactLink>
-        <ContactLink link="tel:+390439029391">+39 0439 02 93 91</ContactLink>
+        {renderContactLinks()}
       </MenuContacts>
       <MenuContent>
         <MenuImage

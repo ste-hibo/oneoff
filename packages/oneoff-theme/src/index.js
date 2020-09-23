@@ -18,6 +18,7 @@ const oneoffTheme = {
      */
     theme: {
       menu: [],
+      backgroundImageUrl: "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.jpg",
       isMenuOpen: false,
       menuIsClosing: false,
       menuIsOpening: false,

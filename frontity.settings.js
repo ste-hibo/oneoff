@@ -43,6 +43,16 @@ const settings = {
           "socials": {
             "instagram": "https://www.instagram.com/"
           },
+          "contacts": [
+            [
+              "projects@oneoff.it",
+              "mailto:https://projects@oneoff.it"
+            ],
+            [
+              "+39 0439 02 93 91",
+              "tel:+390439029391"
+            ]
+          ],
           "featured": {
             "showOnList": false,
             "showOnPost": false
