@@ -31,7 +31,7 @@ const TextBlock = ({ data, id }) => {
 
   return (
     <ContentWrapper width={width} backgroundColor={background_color} id={id}>
-      <Content>
+      <Content hasParagraph={content !== ""}>
         {renderTitle()}
         {renderBigText()}
         {renderParagraph()}
@@ -76,12 +76,14 @@ const ContentWrapper = styled.div`
 const Content = styled.div`
   margin: auto;
   margin-top: 20vh;
+  padding: 0 ${(props) => (props.hasParagraph ? "24%" : "0")};
 `;
 
 const ParagraphStyled = styled.p`
   font-size: 1.0625rem;
   font-family: Maison Neue Light;
   line-height: 1.8125rem;
+  margin-bottom: 1.5rem;
 `;
 
 const LinkStyled = styled(Link)`
