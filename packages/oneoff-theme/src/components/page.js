@@ -6,6 +6,7 @@ import TextBlock from "./blocks/TextBlock";
 import ImageBlock from "./blocks/ImageBlock";
 import ImagesTypeA from "./blocks/ImagesTypeA";
 import ImagesTypeB from "./blocks/ImagesTypeB";
+import ExperiencesBlock from "./blocks/ExperiencesBlock";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -40,6 +41,9 @@ const Page = ({ state }) => {
 
       case "images_type_b":
         return <ImagesTypeB key={`${layout}_${i}`} id={id} data={block} />;
+
+      case "experiences_block":
+        return <ExperiencesBlock key={`${layout}_${i}`} id={id} data={block} />;
 
       default:
       // return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
