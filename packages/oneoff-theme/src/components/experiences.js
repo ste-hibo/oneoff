@@ -2,7 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 import Experience from "./Experience";
 
-const Showcase = ({ state }) => {
+const Experiences = ({ state }) => {
   const data = state.source.get(state.router.link);
 
   const sortItems = (items) => {
@@ -38,4 +38,4 @@ const Container = styled.div`
   }
 `;
 
-export default connect(Showcase);
+export default connect(Experiences);
