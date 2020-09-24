@@ -3,13 +3,11 @@ import { connect, styled } from "frontity";
 import { colors } from "../../styles";
 import Link from "../link";
 
-const PERCENT_TOLLERANCE = 2;
-
 const StickyPanel = ({ actions, state, data, id }) => {
   const { content, sections } = data;
 
   let activeOnReaching = sections.map(
-    (section) => section.value - PERCENT_TOLLERANCE
+    (section) => Number(section.value)
   );
   activeOnReaching.push(100);
 
@@ -29,7 +27,7 @@ const StickyPanel = ({ actions, state, data, id }) => {
               key={`${section.text}_${section.value}`}
               aria-current={isActive}
               onClick={() => {
-                actions.theme.scrollTo(section.value);
+                actions.theme.scrollTo(Number(section.value) + 0.01);
               }}
             >
               {section.text}

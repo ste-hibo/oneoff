@@ -51,7 +51,7 @@ const Theme = ({ actions, state }) => {
     if (!scrollTarget) return;
 
     const position = percentToScrollPosition(value);
-    const delta = scrollPos - position <= 0 ? 1 : -1;
+    const delta = 0;
 
     scrollPos = position;
     calculateScrollPos(delta);
