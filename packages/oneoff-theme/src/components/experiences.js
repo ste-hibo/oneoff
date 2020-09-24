@@ -4,21 +4,22 @@ import Experience from "./Experience";
 
 const Experiences = ({ state }) => {
   const data = state.source.get(state.router.link);
+  const source = state.source[data.type];
 
-  const sortItems = (items) => {
+  const getItemsSortedByMenuOrder = (items) => {
     return items.sort((itemA, itemB) => {
-      const exp_dataA = state.source[data.type][itemA.id];
-      const exp_dataB = state.source[data.type][itemB.id];
+      const exp_dataA = source[itemA.id];
+      const exp_dataB = source[itemB.id];
       
       return exp_dataA.menu_order - exp_dataB.menu_order;
     });
   };
 
   const renderExperiences = () => {
-    const sortedItems = sortItems(data.items);
+    const sortedItems = getItemsSortedByMenuOrder(data.items);
 
     return sortedItems.map((exp, i) => {
-      const exp_data = state.source[data.type][exp.id];
+      const exp_data = source[exp.id];
       const media = state.source.attachment[exp_data.featured_media];
 
       return <Experience key={exp.id} index={i} data={exp_data} featured_media={media} />;
