@@ -3,12 +3,12 @@ import { styled } from "frontity";
 import { colors } from "../styles";
 import LinkComponent from "@frontity/components/link";
 
-const Experience = ({ index, data, featured_media }) => {
+const Experience = ({ index, isLast, data, featured_media }) => {
   const {
     acf: { gallery },
     content,
     title,
-    link
+    link,
   } = data;
   const { source_url } = featured_media;
 
@@ -22,7 +22,7 @@ const Experience = ({ index, data, featured_media }) => {
   };
 
   return (
-    <ExperienceWrapper link={link}>
+    <ExperienceWrapper isLast={isLast} link={link}>
       <MediaStyled className="exp-image" imgUrl={source_url} />
       <TitleWrapper>
         <IndexStyled>{renderIndex()}</IndexStyled>
@@ -37,6 +37,7 @@ export default Experience;
 const ExperienceWrapper = styled(LinkComponent)`
   margin: auto;
   padding-left: 18.2rem;
+  padding-right: ${(props) => (props.isLast ? "5rem" : "0")};
   position: relative;
 
   &:hover {
