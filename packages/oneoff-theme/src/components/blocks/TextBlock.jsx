@@ -1,13 +1,18 @@
 import React from "react";
 import { styled } from "frontity";
 import { colors } from "../../styles";
+import Link from "../link";
 import { getTextWithoutParagraph } from "../../../utilities";
 
 const TextBlock = ({ data, id }) => {
-  const { title, big_text, content, background_color } = data;
+  const { title, big_text, content, link, width, background_color } = data;
+
+  const renderLink = () => {
+    return link ? <LinkStyled link={link.url}>{link.title}</LinkStyled> : null;
+  };
 
   return (
-    <ContentWrapper backgroundColor={background_color} id={id}>
+    <ContentWrapper width={width} backgroundColor={background_color} id={id}>
       <Content>
         <h3>{title}</h3>
         <h1
@@ -16,6 +21,7 @@ const TextBlock = ({ data, id }) => {
           }}
         ></h1>
         <ParagraphStyled>{content}</ParagraphStyled>
+        {renderLink()}
       </Content>
     </ContentWrapper>
   );
@@ -26,7 +32,7 @@ export default TextBlock;
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 63vw;
+  width: ${(props) => props.width}vw;
   height: 100vh;
   background-color: ${(props) =>
     props.backgroundColor === "white" ? colors.WHITE : colors.BLACK};
@@ -43,7 +49,7 @@ const ContentWrapper = styled.div`
     font-size: 0.9375rem;
     font-family: Maison Neue Book;
     color: ${(props) =>
-      props.backgroundColor === "white" ? colors.SECONDARY : colors.GOLD};
+      props.backgroundColor === "white" ? colors.SECONDARY : colors.WHITE};
   }
 
   p {
@@ -54,11 +60,20 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   margin: auto;
-  padding: 0 17rem;
+  margin-top: 20vh;
+  // padding: 0 17rem;
 `;
 
 const ParagraphStyled = styled.p`
   font-size: 1.0625rem;
   font-family: Maison Neue Light;
   line-height: 1.8125rem;
+`;
+
+const LinkStyled = styled(Link)`
+  color: ${colors.GOLD};
+  font-size: 1.125rem;
+  font-family: Maison Neue Demi;
+  margin-top: 2rem;
+  line-height: 3;
 `;

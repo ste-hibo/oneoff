@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "frontity";
 import Slider from "./blocks/Slider";
 import StickyPanel from "./blocks/StickyPanel";
-import TextAndImages from "./blocks/TextAndImages";
+import ImagesTypeA from "./blocks/ImagesTypeA";
 import TextBlock from "./blocks/TextBlock";
 import ImageBlock from "./blocks/ImageBlock";
 
@@ -34,8 +34,8 @@ const Page = ({ state }) => {
       case "contact_panel":
       // return contactPanel(block);
 
-      case "text_and_images":
-        return <TextAndImages key={`${layout}_${i}`} id={id} data={block} />;
+      case "images_type_a":
+        return <ImagesTypeA key={`${layout}_${i}`} id={id} data={block} />;
 
       default:
       // return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
