@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
+import LinkComponent from "@frontity/components/link";
 import { colors } from "../styles";
 import { InstagramIcon } from "./icons";
 
@@ -229,7 +230,7 @@ const LinksWrapper = styled.div`
   }
 `;
 
-const MenuLink = styled(Link)`
+const MenuLink = styled(LinkComponent)`
   color: ${colors.WHITE};
   width: 100%;
   display: inline-block;

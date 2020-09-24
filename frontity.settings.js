@@ -61,7 +61,8 @@ const settings = {
           "featured": {
             "showOnList": false,
             "showOnPost": false
-          }
+          },
+          "autoPrefetch": "hover"
         }
       }
     },
