@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, styled } from "frontity";
-import Link from "./link";
+import LinkComponent from "@frontity/components/link";
 import { Logo, SubLogo } from "./icons";
 import { colors } from "../styles";
 
@@ -10,10 +10,10 @@ const Header = ({ state }) => {
 
   return (
     <LogoWrapper>
-      <LogoLink link="/">
+      <LinkComponent link="/">
         <Logo blendMode={menuOn ? "normal" : "difference"} />
         <SubLogo color={menuOn ? colors.WHITE : colors.GOLD} />
-      </LogoLink>
+      </LinkComponent>
     </LogoWrapper>
   );
 };
@@ -23,7 +23,4 @@ export default connect(Header);
 const LogoWrapper = styled.div`
   max-width: 100%;
   padding: 5rem;
-`;
-
-const LogoLink = styled(Link)`
 `;
