@@ -1,12 +1,14 @@
 import React from "react";
 import { styled } from "frontity";
 import { colors } from "../styles";
+import LinkComponent from "@frontity/components/link";
 
 const Experience = ({ index, data, featured_media }) => {
   const {
     acf: { gallery },
     content,
     title,
+    link
   } = data;
   const { source_url } = featured_media;
 
@@ -20,8 +22,8 @@ const Experience = ({ index, data, featured_media }) => {
   };
 
   return (
-    <ExperienceWrapper>
-      <MediaStyled className="exp-image" imgUrl={source_url} />;
+    <ExperienceWrapper link={link}>
+      <MediaStyled className="exp-image" imgUrl={source_url} />
       <TitleWrapper>
         <IndexStyled>{renderIndex()}</IndexStyled>
         <TitleStyled>{title.rendered}</TitleStyled>
@@ -32,13 +34,13 @@ const Experience = ({ index, data, featured_media }) => {
 
 export default Experience;
 
-const ExperienceWrapper = styled.div`
+const ExperienceWrapper = styled(LinkComponent)`
   margin: auto;
   padding-left: 18.2rem;
   position: relative;
 
   &:hover {
-    cursor: pointer;
+    // cursor: pointer;
 
     .exp-image {
       background-size: 150%;
