@@ -40,8 +40,6 @@ const ExperienceWrapper = styled(LinkComponent)`
   position: relative;
 
   &:hover {
-    // cursor: pointer;
-
     .exp-image {
       background-size: 150%;
     }
