@@ -24,13 +24,17 @@ const Theme = ({ actions, state }) => {
   const data = state.source.get(state.router.link);
 
   const SPEED = 90;
-  const SMOOTH = 12;
+  const SMOOTHNESS = 12;
 
   const [scrollTarget, setScrollTarget] = useState(null);
 
   useEffect(() => {
     setScrollTarget(document.body.parentNode);
   }, []);
+
+  useEffect(() => {
+    resetScrollPosition();
+  }, [state.router.link]);
 
   useEffect(() => {
     if (!scrollTarget) return;
@@ -47,20 +51,31 @@ const Theme = ({ actions, state }) => {
     scrollTo(state.theme.scrollTo);
   }, [state.theme.updateScrollPos]);
 
+  const resetScrollPosition = () => {
+    scrollPos = 0;
+    if (!isScrolling) {
+      updateScrollPosition();
+    }
+
+    actions.theme.setScrollProgress({
+      percent: 0,
+      value: 0,
+    });
+  };
+
   const scrollTo = (value) => {
     if (!scrollTarget) return;
 
-    const position = percentToScrollPosition(value);
-    const delta = 0;
+    const position = getScrollPositionFromPercentage(value);
 
     scrollPos = position;
-    calculateScrollPos(delta);
+    calculateScrollPos(0);
     if (!isScrolling) {
       updateScrollPosition();
     }
   };
 
-  const percentToScrollPosition = (value) => {
+  const getScrollPositionFromPercentage = (value) => {
     const position =
       ((scrollTarget.scrollWidth - scrollTarget.offsetWidth) * value) / 100;
     return position;
@@ -108,7 +123,7 @@ const Theme = ({ actions, state }) => {
 
     isScrolling = true;
 
-    const delta = (scrollPos - scrollTarget.scrollLeft) / SMOOTH;
+    const delta = (scrollPos - scrollTarget.scrollLeft) / SMOOTHNESS;
 
     scrollTarget.scrollLeft += delta;
 
@@ -145,7 +160,9 @@ const Theme = ({ actions, state }) => {
           <Wrapper>
             <Switch>
               <Loading when={data.isFetching} />
-              <Experiences when={data.isExperiences || data.isExperienceArchive } />
+              <Experiences
+                when={data.isExperiences || data.isExperienceArchive}
+              />
               <Page when={data.isPage} />
               <PageError when={data.isError} />
             </Switch>
