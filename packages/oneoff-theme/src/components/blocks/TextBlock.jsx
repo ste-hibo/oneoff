@@ -7,6 +7,24 @@ import { getTextWithoutParagraph } from "../../../utilities";
 const TextBlock = ({ data, id }) => {
   const { title, big_text, content, link, width, background_color } = data;
 
+  const renderTitle = () => {
+    return title ? <h3>{title}</h3> : null;
+  };
+
+  const renderBigText = () => {
+    return big_text ? (
+      <h1
+        dangerouslySetInnerHTML={{
+          __html: getTextWithoutParagraph(big_text),
+        }}
+      ></h1>
+    ) : null;
+  };
+
+  const renderParagraph = () => {
+    return content ? <ParagraphStyled>{content}</ParagraphStyled> : null;
+  };
+
   const renderLink = () => {
     return link ? <LinkStyled link={link.url}>{link.title}</LinkStyled> : null;
   };
@@ -14,13 +32,9 @@ const TextBlock = ({ data, id }) => {
   return (
     <ContentWrapper width={width} backgroundColor={background_color} id={id}>
       <Content>
-        <h3>{title}</h3>
-        <h1
-          dangerouslySetInnerHTML={{
-            __html: getTextWithoutParagraph(big_text),
-          }}
-        ></h1>
-        <ParagraphStyled>{content}</ParagraphStyled>
+        {renderTitle()}
+        {renderBigText()}
+        {renderParagraph()}
         {renderLink()}
       </Content>
     </ContentWrapper>
@@ -40,7 +54,7 @@ const ContentWrapper = styled.div`
   h1 {
     font-size: 3.073vw;
     font-family: Circular Std;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
     color: ${(props) =>
       props.backgroundColor === "white" ? colors.BLACK : colors.WHITE};
   }
@@ -48,6 +62,7 @@ const ContentWrapper = styled.div`
   h3 {
     font-size: 0.9375rem;
     font-family: Maison Neue Book;
+    margin-bottom: 2rem;
     color: ${(props) =>
       props.backgroundColor === "white" ? colors.SECONDARY : colors.WHITE};
   }
@@ -61,7 +76,6 @@ const ContentWrapper = styled.div`
 const Content = styled.div`
   margin: auto;
   margin-top: 20vh;
-  // padding: 0 17rem;
 `;
 
 const ParagraphStyled = styled.p`
