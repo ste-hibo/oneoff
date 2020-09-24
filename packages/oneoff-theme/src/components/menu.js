@@ -7,7 +7,7 @@ const Menu = ({ state, actions }) => {
   const menuToggleTimeout = 1000;
 
   useEffect(() => {
-    if (isMenuOpen) {
+    if (menuIsOpening) {
       actions.theme.closeMenu();
     }
   }, [state.router.link]);
