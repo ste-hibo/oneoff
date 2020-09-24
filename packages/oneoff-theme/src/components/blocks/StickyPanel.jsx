@@ -69,7 +69,7 @@ const StyledLink = styled(Link)`
 `;
 
 const SectionsStyled = styled.div`
-  font-size: 6.25rem;
+  font-size: 5.2vw;
   font-family: Circular Bold;
   display: flex;
   flex-direction: column;

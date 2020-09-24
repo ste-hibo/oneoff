@@ -32,7 +32,7 @@ const ContentWrapper = styled.div`
     props.backgroundColor === "white" ? colors.WHITE : colors.BLACK};
 
   h1 {
-    font-size: 3.6875rem;
+    font-size: 3.073vw;
     font-family: Circular Std;
     margin: 2rem 0;
     color: ${(props) =>

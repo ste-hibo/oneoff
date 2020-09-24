@@ -51,7 +51,7 @@ const Content1 = styled.div`
   padding-left: 9.8rem;
 
   h1 {
-    font-size: 3.6875rem;
+    font-size: 3.073vw;
     font-family: Circular Std;
     margin: 2rem 0;
   }
@@ -71,6 +71,7 @@ const Content2 = styled.div`
 
   img {
     box-shadow: 60px -60px ${colors.GOLD};
+    width: 23.906vw;
   }
 `;
 
@@ -81,18 +82,20 @@ const Content3 = styled.div`
 
   p {
     position: absolute;
-    width: 19rem;
-    bottom: 9rem;
-    right: 44rem;
+    width: 15.833vw;
+    bottom: 15vh;
+    left: 5vw;
     font-family: Maison Neue Book;
-    font-size: 1.75rem;
+    font-size: 1.458vw;
     text-align: right;
+    z-index: 1;
   }
 
   img:nth-of-type(1) {
     position: absolute;
-    bottom: -22rem;
-    right: 39rem;
+    top: -7rem;
+    left: 7rem;
+    width: 18.438vw;
   }
 
   img:nth-of-type(2) {
@@ -100,6 +103,7 @@ const Content3 = styled.div`
     right: -6rem;
     bottom: -13rem;
     z-index: -1;
+    width: 39.948vw;
   }
 `;
 
