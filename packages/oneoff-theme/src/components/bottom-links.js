@@ -25,11 +25,6 @@ export default connect(BottomLinks);
 
 const GoldenLink = styled(Link)`
   color: ${colors.GOLD};
-
-  &:hover,
-  &:focus {
-    text-decoration: line-through;
-  }
 `;
 
 const LinksContainer = styled.div`

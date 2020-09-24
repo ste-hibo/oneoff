@@ -8,7 +8,9 @@ const PERCENT_TOLLERANCE = 2;
 const StickyPanel = ({ actions, state, data, id }) => {
   const { content, sections } = data;
 
-  let activeOnReaching = sections.map((section) => section.value - PERCENT_TOLLERANCE);
+  let activeOnReaching = sections.map(
+    (section) => section.value - PERCENT_TOLLERANCE
+  );
   activeOnReaching.push(100);
 
   const drawSections = () => {
@@ -61,6 +63,7 @@ const StyledLink = styled(Link)`
 
   &:hover {
     color: ${colors.GOLD};
+    text-decoration: none;
   }
 
   &:visited {

@@ -96,6 +96,12 @@ a,
 a:visited {
   text-decoration: none;
 }
+a {
+  &:hover,
+  &:focus {
+    text-decoration: line-through;
+  }
+}
 ::-webkit-scrollbar {
   display:none;
 }

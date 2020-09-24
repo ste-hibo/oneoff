@@ -238,10 +238,6 @@ const MenuLink = styled(Link)`
   font-size: 2.9375rem;
   font-family: Circular Book;
 
-  &:hover,
-  &:focus {
-    text-decoration: line-through;
-  }
   /* style for active link */
   &[aria-current="page"] {
     text-decoration: line-through;
@@ -253,11 +249,6 @@ const ContactLink = styled(Link)`
   width: 100%;
   display: inline-block;
   padding-top: 0.2rem;
-
-  &:hover,
-  &:focus {
-    text-decoration: line-through;
-  }
 `;
 
 export default connect(MenuModal);
