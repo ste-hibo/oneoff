@@ -94,7 +94,6 @@ body {
 }
 a,
 a:visited {
-  color: inherit;
   text-decoration: none;
 }
 ::-webkit-scrollbar {

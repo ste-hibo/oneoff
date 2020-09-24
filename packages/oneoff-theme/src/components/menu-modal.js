@@ -230,6 +230,7 @@ const LinksWrapper = styled.div`
 `;
 
 const MenuLink = styled(Link)`
+  color: ${colors.WHITE};
   width: 100%;
   display: inline-block;
   outline: 0;
@@ -248,6 +249,7 @@ const MenuLink = styled(Link)`
 `;
 
 const ContactLink = styled(Link)`
+  color: ${colors.WHITE};
   width: 100%;
   display: inline-block;
   padding-top: 0.2rem;
