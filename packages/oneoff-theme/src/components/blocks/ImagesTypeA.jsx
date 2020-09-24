@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "frontity";
 import { colors } from "../../styles";
 
+// Renders 3 images in a custom way.
 const ImagesTypeA = ({ data, id }) => {
   const { images, content } = data;
 
@@ -30,6 +31,10 @@ const ImagesWrapper = styled.div`
   height: 100vh;
   background-color: ${colors.WHITE};
   z-index: 0;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 const Column1 = styled.div`
@@ -39,7 +44,8 @@ const Column1 = styled.div`
 
   img {
     box-shadow: 60px -60px ${colors.GOLD};
-    width: 23.906vw;
+    width: 24vw;
+    height: 59vh;
   }
 `;
 
@@ -64,7 +70,8 @@ const Column2 = styled.div`
     position: absolute;
     top: -7rem;
     right: -2vw;
-    width: 18.438vw;
+    width: 18.4vw;
+    height: 45vh;
   }
 `;
 
@@ -75,6 +82,7 @@ const Column3 = styled.div`
     position: absolute;
     top: 8rem;
     z-index: -1;
-    width: 39.948vw;
+    width: 40vw;
+    height: 50vh;
   }
 `;
