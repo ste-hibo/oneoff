@@ -19,6 +19,10 @@ export const colors = {
   SLIDER_GRADIENT: "#131313",
 }
 
+export const calcLineThroughHeight = (size) => {
+  return `calc(${size} * 10.5 / 100)`
+}
+
 export const globalStyles = css`
 @font-face {
   font-family: "Circular Air";
@@ -97,9 +101,23 @@ a:visited {
   text-decoration: none;
 }
 a {
+  position: relative;
+  width: fit-content;
+  display: flex;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 46%;
+    width: 0;
+    transition: width .5s;
+  }
+
   &:hover,
   &:focus {
-    text-decoration: line-through;
+    ::after {
+      width: 100%;
+    }
   }
 }
 ::-webkit-scrollbar {

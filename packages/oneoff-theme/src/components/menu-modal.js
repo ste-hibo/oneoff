@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled, connect } from "frontity";
 import Link from "./link";
 import LinkComponent from "@frontity/components/link";
-import { colors } from "../styles";
+import { colors, calcLineThroughHeight } from "../styles";
 import { InstagramIcon } from "./icons";
 
 const MenuModal = ({ state }) => {
@@ -88,12 +88,12 @@ const MenuContacts = styled.div`
   position: fixed;
   bottom: 0;
   right: 0;
-  color: ${colors.WHITE};
-  font-family: Maison Neue Book;
-  font-size: 1.6875rem;
   margin: 4rem 6rem;
   text-align: end;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 
   &.close {
     animation: hide-links ${animationParams.links[1]} forwards;
@@ -230,26 +230,39 @@ const LinksWrapper = styled.div`
   }
 `;
 
+const fontSizes = {
+  menuLink: "2.9375rem",
+  contactLink: "1.6875rem"
+}
 const MenuLink = styled(LinkComponent)`
   color: ${colors.WHITE};
-  width: 100%;
-  display: inline-block;
   outline: 0;
   padding: 1.2rem 0;
-  font-size: 2.9375rem;
+  font-size: ${fontSizes.menuLink};
   font-family: Circular Book;
 
-  /* style for active link */
+  &::after {
+    background-color: ${colors.WHITE};
+    height: ${calcLineThroughHeight(fontSizes.menuLink)};
+  }
+
   &[aria-current="page"] {
-    text-decoration: line-through;
+    ::after {
+      width: 100%;
+    }
   }
 `;
 
 const ContactLink = styled(Link)`
   color: ${colors.WHITE};
-  width: 100%;
-  display: inline-block;
   padding-top: 0.2rem;
+  font-family: Maison Neue Book;
+  font-size: ${fontSizes.contactLink};
+
+  &::after {
+    background-color: ${colors.WHITE};
+    height:  ${calcLineThroughHeight(fontSizes.contactLink)};
+  }
 `;
 
 export default connect(MenuModal);

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
-import { colors } from "../styles.js";
+import { colors, calcLineThroughHeight } from "../styles.js";
 
 const BottomLinks = ({ state }) => {
   const links = state.theme.bottomLinks;
@@ -23,8 +23,15 @@ const BottomLinks = ({ state }) => {
 
 export default connect(BottomLinks);
 
+const linkFontSize = "1.1875rem";
 const GoldenLink = styled(Link)`
+  font-size: ${linkFontSize};
   color: ${colors.GOLD};
+
+  &::after {
+    background-color: ${colors.GOLD};
+    height:  ${calcLineThroughHeight(linkFontSize)};
+  }
 `;
 
 const LinksContainer = styled.div`
@@ -38,8 +45,6 @@ const LinksContainer = styled.div`
 
 const LinksWrapper = styled.div`
   margin-top: auto;
-  font-size: 1.1875rem;
-  color: ${colors.GOLD};
   font-family: Circular Book;
   padding: 3.75rem 5rem;
   display: flex;

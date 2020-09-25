@@ -61,7 +61,6 @@ const StyledLink = styled(Link)`
 
   &:hover {
     color: ${colors.GOLD};
-    text-decoration: none;
   }
 
   &:visited {

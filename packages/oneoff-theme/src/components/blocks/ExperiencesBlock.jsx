@@ -103,12 +103,15 @@ const StyledViewAllLink = styled(LinkComponent)`
   height: 1px;
 
   &::after {
-    border: 1px solid ${colors.WHITE};
     content: "";
     position: absolute;
-    width: 67vh;
+    border: 1px solid ${colors.WHITE};
+    border-radius: 100%;
     height: 67vh;
-    border-radius: 67vh;
+
+    /* Override default properties */
+    width: 67vh !important;
+    bottom: unset;
   }
 
   &::before {
@@ -123,11 +126,6 @@ const StyledViewAllLink = styled(LinkComponent)`
   }
 
   &:hover {
-    text-decoration: none;
-
-    ::after {
-    }
-
     ::before {
       width: 67vh;
       height: 67vh;
