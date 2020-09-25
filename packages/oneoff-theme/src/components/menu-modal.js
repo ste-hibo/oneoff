@@ -4,28 +4,15 @@ import Link from "./link";
 import LinkComponent from "@frontity/components/link";
 import { colors, calcLineThroughHeight } from "../styles";
 import { InstagramIcon } from "./icons";
+import ContactLinks from "./ContactLinks";
 
 const MenuModal = ({ state }) => {
-  const {
-    menu,
-    defaultMenuImage,
-    contacts,
-    menuIsClosing,
-    socials,
-  } = state.theme;
+  const { menu, defaultMenuImage, menuIsClosing, socials } = state.theme;
   const isThereLinks = menu != null && menu.length > 0;
   const closeClass = "close";
   const menuImages = Object.fromEntries(menu);
 
   const [menuImage, setMenuImage] = useState(defaultMenuImage);
-
-  const renderContactLinks = () => {
-    return contacts.map((contact, i) => (
-      <ContactLink key={`${contact[1]}_${i}`} link={contact[1]}>
-        {contact[0]}
-      </ContactLink>
-    ));
-  };
 
   const changeMenuImage = (ev) => {
     setMenuImage(menuImages[ev.target.pathname]);
@@ -44,37 +31,57 @@ const MenuModal = ({ state }) => {
     });
   };
 
+  const renderContactLinks = () => {
+    return (
+      <ContactLinksWrapper className={menuIsClosing ? closeClass : ""}>
+        <ContactLinks />
+      </ContactLinksWrapper>
+    );
+  };
+
+  const renderMenuImages = () => {
+    return (
+      <ImagesWrapper className={menuIsClosing ? closeClass : ""}>
+        {renderOverImages()}
+        <MenuImage src={defaultMenuImage} />
+      </ImagesWrapper>
+    );
+  };
+
+  const renderMenuLinks = () => {
+    return (
+      <LinksWrapper className={menuIsClosing ? closeClass : ""}>
+        {isThereLinks &&
+          menu.map(([link, image, name]) => (
+            <MenuLink
+              key={name}
+              link={link}
+              aria-current={state.router.link === link ? "page" : undefined}
+              onMouseOver={changeMenuImage}
+            >
+              {name}
+            </MenuLink>
+          ))}
+        <IconContainer link={socials.instagram}>
+          <InstagramIcon />
+        </IconContainer>
+      </LinksWrapper>
+    );
+  };
+
   return (
     <>
       <MenuOverlay className={menuIsClosing ? closeClass : ""} />
-      <MenuContacts className={menuIsClosing ? closeClass : ""}>
-        {renderContactLinks()}
-      </MenuContacts>
+      {renderContactLinks()}
       <MenuContent>
-        <ImagesContainer className={menuIsClosing ? closeClass : ""}>
-          {renderOverImages()}
-          <MenuImage src={defaultMenuImage} />
-        </ImagesContainer>
-        <LinksWrapper className={menuIsClosing ? closeClass : ""}>
-          {isThereLinks &&
-            menu.map(([link, image, name]) => (
-              <MenuLink
-                key={name}
-                link={link}
-                aria-current={state.router.link === link ? "page" : undefined}
-                onMouseOver={changeMenuImage}
-              >
-                {name}
-              </MenuLink>
-            ))}
-          <IconContainer link={socials.instagram}>
-            <InstagramIcon />
-          </IconContainer>
-        </LinksWrapper>
+        {renderMenuImages()}
+        {renderMenuLinks()}
       </MenuContent>
     </>
   );
 };
+
+export default connect(MenuModal);
 
 // [opening, closing]
 const animationParams = {
@@ -83,7 +90,7 @@ const animationParams = {
   links: ["0.5s ease", "0.5s   ease"],
 };
 
-const MenuContacts = styled.div`
+const ContactLinksWrapper = styled.div`
   animation: show-links ${animationParams.links[0]} forwards;
   position: fixed;
   bottom: 0;
@@ -160,7 +167,7 @@ const MenuContent = styled.div`
   position: fixed;
 `;
 
-const ImagesContainer = styled.div`
+const ImagesWrapper = styled.div`
   @keyframes open-image {
     0% {
       transform: translateY(100vh);
@@ -232,8 +239,7 @@ const LinksWrapper = styled.div`
 
 const fontSizes = {
   menuLink: "2.9375rem",
-  contactLink: "1.6875rem"
-}
+};
 const MenuLink = styled(LinkComponent)`
   color: ${colors.WHITE};
   outline: 0;
@@ -252,17 +258,3 @@ const MenuLink = styled(LinkComponent)`
     }
   }
 `;
-
-const ContactLink = styled(Link)`
-  color: ${colors.WHITE};
-  padding-top: 0.2rem;
-  font-family: Maison Neue Book;
-  font-size: ${fontSizes.contactLink};
-
-  &::after {
-    background-color: ${colors.WHITE};
-    height:  ${calcLineThroughHeight(fontSizes.contactLink)};
-  }
-`;
-
-export default connect(MenuModal);
