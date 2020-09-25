@@ -7,6 +7,7 @@ import ImageBlock from "./blocks/ImageBlock";
 import ImagesTypeA from "./blocks/ImagesTypeA";
 import ImagesTypeB from "./blocks/ImagesTypeB";
 import ExperiencesBlock from "./blocks/ExperiencesBlock";
+import ContactsBlock from "./blocks/ContactsBlock";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -33,9 +34,6 @@ const Page = ({ state }) => {
       case "big_words":
       // return bigWordsBlock(block);
 
-      case "contact_panel":
-      // return contactPanel(block);
-
       case "images_type_a":
         return <ImagesTypeA key={`${layout}_${i}`} id={id} data={block} />;
 
@@ -54,8 +52,15 @@ const Page = ({ state }) => {
     return blocks.map(createSingleBlock);
   };
 
+  const renderContactsBlock = () => {
+    return <ContactsBlock />;
+  };
+
   return blocks ? (
-    renderBlocks()
+    <>
+      {renderBlocks()}
+      {renderContactsBlock()}
+    </>
   ) : (
     <>
       <h1>{page.title.rendered}</h1>
