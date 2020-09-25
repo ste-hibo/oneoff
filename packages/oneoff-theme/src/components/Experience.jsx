@@ -22,7 +22,7 @@ const Experience = ({ index, isLast, data, featured_media }) => {
   };
 
   return (
-    <ExperienceWrapper isLast={isLast} link={link}>
+    <ExperienceWrapper className={isLast ? "last-exp" : ""} link={link}>
       <MediaStyled className="exp-image" imgUrl={source_url} />
       <TitleWrapper>
         <IndexStyled>{renderIndex()}</IndexStyled>
@@ -37,8 +37,11 @@ export default Experience;
 const ExperienceWrapper = styled(LinkComponent)`
   margin: auto;
   padding-left: 18.2rem;
-  padding-right: ${(props) => (props.isLast ? "5rem" : "0")};
   position: relative;
+  
+  &.last-exp {
+    padding-right: 5rem;
+  }
 
   &:hover {
     .exp-image {
