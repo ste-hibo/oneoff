@@ -3,7 +3,7 @@ import { styled } from "frontity";
 import { colors } from "../styles";
 import LinkComponent from "@frontity/components/link";
 
-const Experience = ({ index, isLast, data, featured_media }) => {
+const Experience = ({ index, isLast, altStyle, data, featured_media }) => {
   const {
     acf: { gallery },
     content,
@@ -22,9 +22,17 @@ const Experience = ({ index, isLast, data, featured_media }) => {
   };
 
   return (
-    <ExperienceWrapper className={isLast ? "last-exp" : ""} link={link}>
-      <MediaStyled className="exp-image" imgUrl={source_url} />
-      <TitleWrapper>
+    <ExperienceWrapper
+      className={isLast ? "last-exp" : ""}
+      data-altstyle={altStyle}
+      link={link}
+    >
+      <MediaStyled
+        className="exp-image"
+        data-altstyle={altStyle}
+        imgUrl={source_url}
+      />
+      <TitleWrapper data-altstyle={altStyle}>
         <IndexStyled>{renderIndex()}</IndexStyled>
         <TitleStyled>{title.rendered}</TitleStyled>
       </TitleWrapper>
@@ -34,11 +42,28 @@ const Experience = ({ index, isLast, data, featured_media }) => {
 
 export default Experience;
 
+const altStyles = {
+  experienceWrapper: `
+  margin: 0;
+  padding: 0;
+  margin-right: 6.25rem;
+  `,
+  mediaStyled: `
+  width: 40.125rem;
+  height: 90vh;
+  `,
+  titleWrapper: `
+  left: -3rem;
+  `,
+};
+
 const ExperienceWrapper = styled(LinkComponent)`
   margin: auto;
   padding-left: 18.2rem;
   position: relative;
-  
+
+  ${(props) => (props["data-altstyle"] ? altStyles.experienceWrapper : "")}
+
   &.last-exp {
     padding-right: 5rem;
   }
@@ -56,6 +81,8 @@ const MediaStyled = styled.div`
   background: url(${(props) => props.imgUrl}) center no-repeat;
   background-size: 130%;
   transition: background 0.5s ease;
+
+  ${(props) => (props["data-altstyle"] ? altStyles.mediaStyled : "")}
 `;
 
 const TitleWrapper = styled.div`
@@ -64,6 +91,8 @@ const TitleWrapper = styled.div`
   bottom: 6rem;
   display: flex;
   flex-direction: column;
+
+  ${(props) => (props["data-altstyle"] ? altStyles.titleWrapper : "")}
 `;
 
 const IndexStyled = styled.span`
