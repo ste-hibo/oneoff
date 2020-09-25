@@ -83,7 +83,7 @@ const ParagraphStyled = styled.p`
   font-size: 1.0625rem;
   font-family: Maison Neue Light;
   line-height: 1.8125rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 `;
 
 const LinkStyled = styled(Link)`
@@ -91,5 +91,4 @@ const LinkStyled = styled(Link)`
   font-size: 1.125rem;
   font-family: Maison Neue Demi;
   margin-top: 2rem;
-  line-height: 3;
 `;
