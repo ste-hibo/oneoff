@@ -10,10 +10,14 @@ const Menu = ({ state, actions }) => {
     menuIsClosing,
     scrollProgress,
   } = state.theme;
+  const data = state.source.get(state.router.link);
+
   const menuToggleTimeout = 900;
   const altColorThreshold = 86.25;
   const iconColor =
-    scrollProgress.percent < altColorThreshold ? colors.GOLD : colors.WHITE;
+    !data.isPage || scrollProgress.percent < altColorThreshold
+      ? colors.GOLD
+      : colors.WHITE;
 
   useEffect(() => {
     if (menuIsOpening) {
@@ -62,6 +66,6 @@ const MenuToggle = styled.div`
   z-index: 1;
 
   line {
-    transition: all .5s;
+    transition: all 0.5s;
   }
 `;

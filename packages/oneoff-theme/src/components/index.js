@@ -134,6 +134,10 @@ const Theme = ({ actions, state }) => {
     }
   };
 
+  const renderProgressBar = (params) => {
+    return data.isPage ? <ProgressBar /> : null;
+  };
+
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -169,7 +173,7 @@ const Theme = ({ actions, state }) => {
           </Wrapper>
         </OuterWrapper>
         <BottomLinks />
-        <ProgressBar />
+        {renderProgressBar()}
       </>
 
       {menuIsOpening ? <MenuModal /> : null}

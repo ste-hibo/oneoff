@@ -6,9 +6,11 @@ import { colors } from "../styles";
 
 const Header = ({ state }) => {
   const { menuIsOpening, menuIsClosing, scrollProgress } = state.theme;
+  const data = state.source.get(state.router.link);
+
   const altColorThreshold = 98.03;
   const menuOn = menuIsOpening && !menuIsClosing;
-  const whiteLogo = menuOn || scrollProgress.percent >= altColorThreshold;
+  const whiteLogo = menuOn || data.isPage && scrollProgress.percent >= altColorThreshold;
 
   return (
     <LogoWrapper>
