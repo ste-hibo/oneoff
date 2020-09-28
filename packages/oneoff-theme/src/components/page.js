@@ -8,6 +8,7 @@ import ImagesTypeA from "./blocks/ImagesTypeA";
 import ImagesTypeB from "./blocks/ImagesTypeB";
 import ExperiencesBlock from "./blocks/ExperiencesBlock";
 import ContactsBlock from "./blocks/ContactsBlock";
+import BigWords from "./blocks/BigWords";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -32,7 +33,7 @@ const Page = ({ state }) => {
         return <ImageBlock key={`${layout}_${i}`} id={id} data={block} />;
 
       case "big_words":
-      // return bigWordsBlock(block);
+        return <BigWords key={`${layout}_${i}`} id={id} data={block} />;
 
       case "images_type_a":
         return <ImagesTypeA key={`${layout}_${i}`} id={id} data={block} />;
