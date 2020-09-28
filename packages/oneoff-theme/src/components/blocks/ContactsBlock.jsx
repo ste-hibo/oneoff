@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useRef} from "react";
 import { colors } from "../../styles";
 import { styled } from "frontity";
 import ContactLinks from "../ContactLinks";
+import FollowerElement from "../FollowerElement";
 
 const ContactsBlock = () => {
   const mainText = "Contact us</br>For your next event";
   const partnerText = "Partner of <strong>hibo</strong>";
+  const followerElementText = "HIRE US";
+  const wrapper = useRef();
 
   const renderContactLinks = () => {
     return (
@@ -25,7 +28,7 @@ const ContactsBlock = () => {
 
   return (
     <BlockWrapper>
-      <ContentWrapper>
+      <ContentWrapper ref={wrapper}>
         <StyledMainText
           dangerouslySetInnerHTML={{ __html: mainText }}
         ></StyledMainText>
@@ -33,6 +36,7 @@ const ContactsBlock = () => {
           {renderContactLinks()}
           {renderPartnerText()}
         </BottomContent>
+        <FollowerElement parent={wrapper}>{followerElementText}</FollowerElement>
       </ContentWrapper>
     </BlockWrapper>
   );
@@ -53,6 +57,8 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
+  cursor: none;
 `;
 
 const BottomContent = styled.div`
