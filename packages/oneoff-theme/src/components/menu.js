@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import { CloseIcon, MenuIcon } from "./icons";
+import { colors } from "../styles";
 
 const Menu = ({ state, actions }) => {
-  const { isMenuOpen, menuIsOpening, menuIsClosing } = state.theme;
-  const menuToggleTimeout = 1000;
+  const {
+    isMenuOpen,
+    menuIsOpening,
+    menuIsClosing,
+    scrollProgress,
+  } = state.theme;
+  const menuToggleTimeout = 900;
+  const altColorThreshold = 86.25;
+  const iconColor =
+    scrollProgress.percent < altColorThreshold ? colors.GOLD : colors.WHITE;
 
   useEffect(() => {
     if (menuIsOpening) {
@@ -32,7 +41,11 @@ const Menu = ({ state, actions }) => {
     <MenuToggle
       onClick={!isMenuOpen ? actions.theme.openMenu : actions.theme.closeMenu}
     >
-      {menuIsOpening && !menuIsClosing ? <CloseIcon /> : <MenuIcon />}
+      {menuIsOpening && !menuIsClosing ? (
+        <CloseIcon />
+      ) : (
+        <MenuIcon color={iconColor} />
+      )}
     </MenuToggle>
   );
 };
@@ -47,4 +60,8 @@ const MenuToggle = styled.div`
   margin: 4rem;
   padding: 1rem;
   z-index: 1;
+
+  line {
+    transition: all .5s;
+  }
 `;

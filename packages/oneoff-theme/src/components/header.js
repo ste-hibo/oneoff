@@ -5,14 +5,16 @@ import { Logo, SubLogo } from "./icons";
 import { colors } from "../styles";
 
 const Header = ({ state }) => {
-  const { menuIsOpening, menuIsClosing } = state.theme;
+  const { menuIsOpening, menuIsClosing, scrollProgress } = state.theme;
+  const altColorThreshold = 98.03;
   const menuOn = menuIsOpening && !menuIsClosing;
+  const whiteLogo = menuOn || scrollProgress.percent >= altColorThreshold;
 
   return (
     <LogoWrapper>
       <LinkComponent link="/">
-        <Logo blendMode={menuOn ? "normal" : "difference"} />
-        <SubLogo color={menuOn ? colors.WHITE : colors.GOLD} />
+        <Logo blendMode={whiteLogo ? "normal" : "difference"} />
+        <SubLogo color={whiteLogo ? colors.WHITE : colors.GOLD} />
       </LinkComponent>
     </LogoWrapper>
   );

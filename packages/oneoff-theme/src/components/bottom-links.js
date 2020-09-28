@@ -4,16 +4,17 @@ import Link from "./link";
 import { colors, calcLineThroughHeight } from "../styles.js";
 
 const BottomLinks = ({ state }) => {
-  const links = state.theme.bottomLinks;
+  const {bottomLinks, scrollProgress} = state.theme;
+  const linksColorThreshold = 86.25;
 
   return (
     <LinksContainer>
       <LinksWrapper>
-        {links.map(([name, link]) => {
+        {bottomLinks.map(([name, link]) => {
           return (
-            <GoldenLink key={name} link={link}>
+            <StyledLink key={name} link={link} color={scrollProgress.percent < linksColorThreshold ? colors.GOLD : colors.WHITE}>
               {name}
-            </GoldenLink>
+            </StyledLink>
           );
         })}
       </LinksWrapper>
@@ -24,12 +25,13 @@ const BottomLinks = ({ state }) => {
 export default connect(BottomLinks);
 
 const linkFontSize = "1.1875rem";
-const GoldenLink = styled(Link)`
+const StyledLink = styled(Link)`
   font-size: ${linkFontSize};
-  color: ${colors.GOLD};
+  color: ${props => props.color};
+  transition: color .5s;
 
   &::after {
-    background-color: ${colors.GOLD};
+    background-color: ${props => props.color};
     height:  ${calcLineThroughHeight(linkFontSize)};
   }
 `;
