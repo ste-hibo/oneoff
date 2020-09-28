@@ -22,7 +22,7 @@ const BarContainer = styled.div`
 
 const BarStyled = styled.div`
   transition: width .5s ease-in-out;
-  height: 0.4375rem;
+  height: 0.2rem;
   width: ${(props) => props.width}vw;
   background-color: ${colors.GOLD};
 `;

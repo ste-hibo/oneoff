@@ -47,6 +47,7 @@ const LinksWrapper = styled.div`
   margin-top: auto;
   font-family: Circular Book;
   padding: 3.75rem 5rem;
+  padding-top: 0;
   display: flex;
   justify-content: space-between;
 `;

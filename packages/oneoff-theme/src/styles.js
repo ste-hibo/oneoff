@@ -20,7 +20,7 @@ export const colors = {
 }
 
 export const calcLineThroughHeight = (size) => {
-  return `calc(${size} * 10.5 / 100)`
+  return `calc(${size} * 10 / 100)`
 }
 
 export const globalStyles = css`
