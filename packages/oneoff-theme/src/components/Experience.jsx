@@ -5,8 +5,6 @@ import LinkComponent from "@frontity/components/link";
 
 const Experience = ({ index, isLast, altStyle, data, featured_media }) => {
   const {
-    acf: { gallery },
-    content,
     title,
     link,
   } = data;

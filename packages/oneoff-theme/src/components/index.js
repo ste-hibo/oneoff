@@ -6,6 +6,7 @@ import Loading from "./loading";
 import Title from "./title";
 import Page from "./page";
 import Experiences from "./experiences";
+import ExperienceDetail from "./experience-detail";
 import PageError from "./page-error";
 import Menu from "./menu";
 import BottomLinks from "./bottom-links";
@@ -164,9 +165,8 @@ const Theme = ({ actions, state }) => {
           <Wrapper>
             <Switch>
               <Loading when={data.isFetching} />
-              <Experiences
-                when={data.isExperiences || data.isExperienceArchive}
-              />
+              <Experiences when={data.isExperienceArchive} />
+              <ExperienceDetail when={data.isExperience} />
               <Page when={data.isPage} />
               <PageError when={data.isError} />
             </Switch>
