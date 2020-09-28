@@ -22,8 +22,6 @@ const Link = (props) => {
       event.preventDefault();
       
       actions.router.set(link);
-  
-      window.scrollTo(0, 0);
     }
   };
 
