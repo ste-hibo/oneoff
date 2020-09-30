@@ -12,7 +12,6 @@ const Menu = ({ state, actions }) => {
   } = state.theme;
   const data = state.source.get(state.router.link);
 
-  const menuToggleTimeout = 900;
   const altColorThreshold = 86.25;
   const iconColor =
     !data.isPage || scrollProgress.percent < altColorThreshold
@@ -24,22 +23,6 @@ const Menu = ({ state, actions }) => {
       actions.theme.closeMenu();
     }
   }, [state.router.link]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (menuIsOpening) {
-        actions.theme.setMenuOpen();
-      }
-    }, menuToggleTimeout);
-  }, [menuIsOpening]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (menuIsClosing) {
-        actions.theme.setMenuClose();
-      }
-    }, menuToggleTimeout);
-  }, [menuIsClosing]);
 
   return (
     <MenuToggle
