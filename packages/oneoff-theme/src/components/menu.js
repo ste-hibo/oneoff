@@ -46,7 +46,9 @@ const Menu = ({ state, actions }) => {
       onClick={!isMenuOpen ? actions.theme.openMenu : actions.theme.closeMenu}
     >
       {menuIsOpening && !menuIsClosing ? (
-        <CloseIcon />
+        <CloseIconContainer>
+          <CloseIcon strokeWidth={2} />
+        </CloseIconContainer>
       ) : (
         <MenuIcon color={iconColor} />
       )}
@@ -69,3 +71,8 @@ const MenuToggle = styled.div`
     transition: all 0.5s;
   }
 `;
+
+const CloseIconContainer = styled.div`
+width: 1.375rem;
+height: 1.375rem;
+`

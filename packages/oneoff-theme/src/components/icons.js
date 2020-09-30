@@ -24,12 +24,12 @@ export const MenuIcon = ({ color }) => {
   );
 };
 
-export const CloseIcon = () => {
+export const CloseIcon = ({strokeWidth}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="22.691"
-      height="21.941"
+      width="100%"
+      height="100%"
       viewBox="0 0 22.691 21.941"
     >
       <g transform="translate(-1811.502 -80.279)">
@@ -39,7 +39,7 @@ export const CloseIcon = () => {
           transform="translate(1812.195 81)"
           fill="none"
           stroke={colors.WHITE}
-          strokeWidth="2"
+          strokeWidth={strokeWidth}
         />
         <line
           x1="21.305"
@@ -47,7 +47,7 @@ export const CloseIcon = () => {
           transform="translate(1812.195 81)"
           fill="none"
           stroke={colors.WHITE}
-          strokeWidth="2"
+          strokeWidth={strokeWidth}
         />
       </g>
     </svg>
