@@ -1,18 +1,14 @@
 import React from "react";
 import { connect, styled } from "frontity";
 import { colors, calcLineThroughHeight } from "../styles";
-import LinkComponent from "@frontity/components/link";
+import Link from "./link";
 import { CameraIcon } from "./icons";
 
-const ExperienceDetail = ({ state }) => {
+const ExperienceDetail = ({ state, actions }) => {
   const data = state.source.get(state.router.link);
   const page = state.source[data.type][data.id];
   const media = state.source.attachment[page.featured_media];
-  const {
-    acf: { gallery },
-    content,
-    title,
-  } = page;
+  const { content, title } = page;
 
   const linkText = "See the Gallery";
 
@@ -23,7 +19,7 @@ const ExperienceDetail = ({ state }) => {
         <StyledParagraph
           dangerouslySetInnerHTML={{ __html: content.rendered }}
         ></StyledParagraph>
-        <StyledLink link={""}>
+        <StyledLink onClick={actions.theme.openGallery}>
           <CameraIcon />
           {linkText}
         </StyledLink>
@@ -74,12 +70,13 @@ const StyledParagraph = styled.div`
 
 const linkColor = colors.GOLD;
 const linkFontSize = "1.125rem";
-const StyledLink = styled(LinkComponent)`
+const StyledLink = styled(Link)`
   color: ${linkColor};
   outline: 0;
   padding: 1.2rem 0;
   font-size: ${linkFontSize};
   font-family: Circular Book;
+  cursor: pointer;
 
   &::after {
     background-color: ${linkColor};

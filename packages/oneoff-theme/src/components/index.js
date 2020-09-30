@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Global, connect, styled, Head } from "frontity";
+import { Global, connect, styled, css, Head } from "frontity";
 import Switch from "@frontity/components/switch";
 import Header from "./header";
 import Loading from "./loading";
@@ -13,12 +13,13 @@ import BottomLinks from "./bottom-links";
 import ProgressBar from "./progress-bar";
 import { globalStyles } from "../styles.js";
 import MenuModal from "./menu-modal";
+import Gallery from "./Gallery";
 
 let scrollPos = 0;
 let isScrolling = false;
 
 const Theme = ({ actions, state }) => {
-  const { menuIsOpening, menuIsClosing } = state.theme;
+  const { menuIsOpening, menuIsClosing, galleryIsOpening } = state.theme;
   const menuOn = menuIsOpening && !menuIsClosing;
 
   // Get information about the current URL.
@@ -83,7 +84,7 @@ const Theme = ({ actions, state }) => {
   };
 
   const handleScroll = (e) => {
-    if (!scrollTarget || state.theme.menuIsOpening) return;
+    if (!scrollTarget || menuIsOpening) return;
 
     e.preventDefault();
 
@@ -135,7 +136,7 @@ const Theme = ({ actions, state }) => {
     }
   };
 
-  const renderProgressBar = (params) => {
+  const renderProgressBar = () => {
     return data.isPage ? <ProgressBar /> : null;
   };
 
@@ -176,19 +177,20 @@ const Theme = ({ actions, state }) => {
         {renderProgressBar()}
       </>
 
+      {galleryIsOpening ? <Gallery /> : null}
       {menuIsOpening ? <MenuModal /> : null}
 
       {state.theme.testing ? (
         <div
-          style={{
-            color: "white",
-            mixBlendMode: "difference",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            opacity: 0.25,
-            padding: 5,
-          }}
+          css={css`
+            color: white;
+            mix-blend-mode: difference;
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0.25;
+            padding: 5px;
+            `}
         >
           {`${state.theme.scrollProgress.percent}% | ${state.theme.scrollProgress.value}`}
         </div>

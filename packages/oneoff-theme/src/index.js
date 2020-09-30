@@ -21,6 +21,9 @@ const oneoffTheme = {
       isMenuOpen: false,
       menuIsClosing: false,
       menuIsOpening: false,
+      isGalleryOpen: false,
+      galleryIsClosing: false,
+      galleryIsOpening: false,
       scrollProgress: { percent: 0, value: 0},
       scrollTo: 0,
       updateScrollPos: false,
@@ -37,19 +40,45 @@ const oneoffTheme = {
    */
   actions: {
     theme: {
-      openMenu: ({ state }) => {
+      openMenu: ({ state, actions }) => {
         state.theme.menuIsOpening = true;
+        setTimeout(() => {
+          actions.theme.setMenuOpen();
+        }, 900);
       },
       setMenuOpen: ({ state }) => {
         state.theme.isMenuOpen = true;
       },
-      closeMenu: ({ state }) => {
+      closeMenu: ({ state, actions }) => {
         state.theme.menuIsClosing = true;
+        setTimeout(() => {
+          actions.theme.setMenuClose();
+        }, 900);
       },
       setMenuClose: ({ state }) => {
         state.theme.isMenuOpen = false;
         state.theme.menuIsClosing = false;
         state.theme.menuIsOpening = false;
+      },
+      openGallery: ({ state, actions }) => {
+        state.theme.galleryIsOpening = true;
+        setTimeout(() => {
+          actions.theme.setGalleryOpen();
+        }, 600);
+      },
+      setGalleryOpen: ({ state }) => {
+        state.theme.isGalleryOpen = true;
+      },
+      closeGallery: ({ state, actions }) => {
+        state.theme.galleryIsClosing = true;
+        setTimeout(() => {
+          actions.theme.setGalleryClose();
+        }, 600);
+      },
+      setGalleryClose: ({ state }) => {
+        state.theme.isGalleryOpen = false;
+        state.theme.galleryIsClosing = false;
+        state.theme.galleryIsOpening = false;
       },
       setScrollProgress: ({state}) => value => {
         state.theme.scrollProgress = value;
