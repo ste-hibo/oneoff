@@ -37,7 +37,7 @@ const settings = {
           "defaultMenuImage": "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.jpg",
           "bottomLinks": [
             [
-              "Follow our world",
+              "Follow us on Instagram",
               "https://www.instagram.com/"
             ],
             [
