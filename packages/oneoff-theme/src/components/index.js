@@ -5,6 +5,7 @@ import Header from "./header";
 import Loading from "./loading";
 import Title from "./title";
 import Page from "./layouts/page";
+import PageContacts from "./layouts/page-contacts";
 import Experiences from "./layouts/experiences";
 import ExperienceDetail from "./layouts/experience-detail";
 import PageError from "./layouts/page-error";
@@ -168,7 +169,7 @@ const Theme = ({ actions, state }) => {
               <Loading when={data.isFetching} />
               <Experiences when={data.isExperienceArchive} />
               <ExperienceDetail when={data.isExperience} />
-              <Page when={data.isPage} />
+              <PageContacts when={data.isPage && data.route === "/contacts/"} />
               <Page when={data.isPage} />
               <PageError when={data.isError} />
             </Switch>
