@@ -1,6 +1,6 @@
 import React from "react";
 import { styled, connect } from "frontity";
-import { colors } from "../styles";
+import { colors } from "../../styles";
 
 const Page404 = ({ state }) => {
   const data = state.source.get(state.router.link);

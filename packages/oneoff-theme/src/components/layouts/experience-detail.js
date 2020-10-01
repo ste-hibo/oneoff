@@ -1,8 +1,8 @@
 import React from "react";
 import { connect, styled } from "frontity";
-import { colors, calcLineThroughHeight } from "../styles";
-import Link from "./link";
-import { CameraIcon } from "./icons";
+import { colors, calcLineThroughHeight } from "../../styles";
+import Link from "../link";
+import { CameraIcon } from "../icons";
 
 const ExperienceDetail = ({ state, actions }) => {
   const data = state.source.get(state.router.link);

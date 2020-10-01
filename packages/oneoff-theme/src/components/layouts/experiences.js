@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, styled } from "frontity";
-import Experience from "./Experience";
+import Experience from "../Experience";
 
 const Experiences = ({ state }) => {
   const data = state.source.get(state.router.link);

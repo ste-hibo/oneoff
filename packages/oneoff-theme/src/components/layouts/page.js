@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "frontity";
-import Slider from "./blocks/Slider";
-import StickyPanel from "./blocks/StickyPanel";
-import TextBlock from "./blocks/TextBlock";
-import ImageBlock from "./blocks/ImageBlock";
-import ImagesTypeA from "./blocks/ImagesTypeA";
-import ImagesTypeB from "./blocks/ImagesTypeB";
-import ExperiencesBlock from "./blocks/ExperiencesBlock";
-import ContactsBlock from "./blocks/ContactsBlock";
-import BigWords from "./blocks/BigWords";
+import Slider from "../blocks/Slider";
+import StickyPanel from "../blocks/StickyPanel";
+import TextBlock from "../blocks/TextBlock";
+import ImageBlock from "../blocks/ImageBlock";
+import ImagesTypeA from "../blocks/ImagesTypeA";
+import ImagesTypeB from "../blocks/ImagesTypeB";
+import ExperiencesBlock from "../blocks/ExperiencesBlock";
+import ContactsBlock from "../blocks/ContactsBlock";
+import BigWords from "../blocks/BigWords";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
