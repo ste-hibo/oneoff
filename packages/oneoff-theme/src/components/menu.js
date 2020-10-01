@@ -2,21 +2,19 @@ import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import { CloseIcon, MenuIcon } from "./icons";
 import { colors } from "../styles";
+import { checkIfUseAlternateColors } from "../../utilities";
 
 const Menu = ({ state, actions }) => {
   const {
     isMenuOpen,
     menuIsOpening,
     menuIsClosing,
-    scrollProgress,
   } = state.theme;
-  const data = state.source.get(state.router.link);
 
   const altColorThreshold = 86.25;
-  const iconColor =
-    !data.isPage || scrollProgress.percent < altColorThreshold
-      ? colors.GOLD
-      : colors.WHITE;
+  const iconColor = checkIfUseAlternateColors(state, altColorThreshold)
+    ? colors.GOLD
+    : colors.WHITE;
 
   useEffect(() => {
     if (menuIsOpening) {
@@ -56,6 +54,6 @@ const MenuToggle = styled.div`
 `;
 
 const CloseIconContainer = styled.div`
-width: 1.375rem;
-height: 1.375rem;
-`
+  width: 1.375rem;
+  height: 1.375rem;
+`;

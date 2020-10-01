@@ -2,16 +2,15 @@ import React from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
 import { colors, calcLineThroughHeight } from "../styles.js";
+import { checkIfUseAlternateColors } from "../../utilities";
 
 const BottomLinks = ({ state }) => {
-  const { bottomLinks, scrollProgress } = state.theme;
-  const data = state.source.get(state.router.link);
+  const { bottomLinks } = state.theme;
 
-  const linksColorThreshold = 86.25;
-  const linksColor =
-    !data.isPage || scrollProgress.percent < linksColorThreshold
-      ? colors.GOLD
-      : colors.WHITE;
+  const altColorThreshold = 86.25;
+  const linksColor = checkIfUseAlternateColors(state, altColorThreshold)
+    ? colors.GOLD
+    : colors.WHITE;
 
   return (
     <LinksContainer>
