@@ -6,7 +6,7 @@ const FollowerElement = ({ children, parent }) => {
   const follower = useRef();
 
   const pos = { x: 0, y: 0 }; // cursor's coordinates
-  const speed = 0.1; // between 0 and 1
+  const speed = 0.7; // between 0 and 1
 
   useEffect(() => {
     if (!parent.current) return;
