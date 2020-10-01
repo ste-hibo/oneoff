@@ -1,10 +1,10 @@
 import React, {useRef} from "react";
 import { colors } from "../../styles";
-import { styled } from "frontity";
+import { connect, styled } from "frontity";
 import ContactLinks from "../ContactLinks";
 import FollowerElement from "../FollowerElement";
 
-const ContactsBlock = () => {
+const ContactsBlock = ({actions}) => {
   const mainText = "Contact us</br>For your next event";
   const partnerText = "Partner of <strong>hibo</strong>";
   const followerElementText = "HIRE US";
@@ -26,9 +26,13 @@ const ContactsBlock = () => {
     );
   };
 
+  const onFollowerElementClick = () => {
+    actions.router.set("/contacts/");
+  }
+
   return (
     <BlockWrapper>
-      <ContentWrapper ref={wrapper}>
+      <ContentWrapper ref={wrapper} onClick={onFollowerElementClick}>
         <StyledMainText
           dangerouslySetInnerHTML={{ __html: mainText }}
         ></StyledMainText>
@@ -42,7 +46,7 @@ const ContactsBlock = () => {
   );
 };
 
-export default ContactsBlock;
+export default connect(ContactsBlock);
 
 const contentLeftPadding = "5.5rem";
 const BlockWrapper = styled.div`
