@@ -54,8 +54,8 @@ const settings = {
               "mailto:https://projects@oneoff.it"
             ],
             [
-              "+39 0439 02 93 91",
-              "tel:+390439029391"
+              "+39 051 356827",
+              "tel:+39051356827"
             ]
           ],
           "contactsSettings": {
@@ -94,6 +94,7 @@ const settings = {
         }
       }
     },
+    "frontity-contact-form-7",
     "@frontity/tiny-router",
     "@frontity/html2react"
   ]

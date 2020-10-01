@@ -17,6 +17,7 @@ export const colors = {
   SECONDARY: "#4C4C4C",
   MENU_BACKGROUND: "#000000",
   SLIDER_GRADIENT: "#131313",
+  ERROR: "#ff2c18"
 }
 
 export const calcLineThroughHeight = (size) => {

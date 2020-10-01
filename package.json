@@ -22,6 +22,7 @@
     "@frontity/tiny-router": "^1.2.1",
     "@frontity/wp-source": "^1.8.1",
     "frontity": "^1.11.0",
+    "frontity-contact-form-7": "^0.1.7",
     "oneoff-theme": "file:packages/oneoff-theme",
     "rc-horizontal-scroll": "^1.1.1",
     "react-responsive-carousel": "^3.2.10",

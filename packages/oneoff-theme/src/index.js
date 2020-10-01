@@ -89,6 +89,14 @@ const oneoffTheme = {
         setInterval(() => {
           state.theme.updateScrollPos = false;
         }, 1000);
+      },
+       /*
+       * use beforeSSR to pre-fetch the contact page
+       * content and add it to the state so we can use
+       * it in a component
+       */
+      beforeSSR: async ({actions}) => {
+        await actions.source.fetch("/contacts");
       }
     },
   },
