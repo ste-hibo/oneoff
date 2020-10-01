@@ -58,6 +58,11 @@ const settings = {
               "tel:+390439029391"
             ]
           ],
+          "contactsSettings": {
+            mainText: "Contact us</br>For your next event",
+            bottomText: "Partner of <strong>hibo</strong>",
+            cursorText: "HIRE US"
+          },
           "featured": {
             "showOnList": false,
             "showOnPost": false

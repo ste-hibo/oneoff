@@ -1,13 +1,11 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { colors } from "../../styles";
 import { connect, styled } from "frontity";
 import ContactLinks from "../ContactLinks";
 import FollowerElement from "../FollowerElement";
 
-const ContactsBlock = ({actions}) => {
-  const mainText = "Contact us</br>For your next event";
-  const partnerText = "Partner of <strong>hibo</strong>";
-  const followerElementText = "HIRE US";
+const ContactsBlock = ({ state, actions }) => {
+  const { mainText, bottomText, cursorText } = state.theme.contactsSettings;
   const wrapper = useRef();
 
   const renderContactLinks = () => {
@@ -21,14 +19,14 @@ const ContactsBlock = ({actions}) => {
   const renderPartnerText = () => {
     return (
       <StyledPartnerText
-        dangerouslySetInnerHTML={{ __html: partnerText }}
+        dangerouslySetInnerHTML={{ __html: bottomText }}
       ></StyledPartnerText>
     );
   };
 
   const onFollowerElementClick = () => {
     actions.router.set("/contacts/");
-  }
+  };
 
   return (
     <BlockWrapper>
@@ -40,7 +38,7 @@ const ContactsBlock = ({actions}) => {
           {renderContactLinks()}
           {renderPartnerText()}
         </BottomContent>
-        <FollowerElement parent={wrapper}>{followerElementText}</FollowerElement>
+        <FollowerElement parent={wrapper}>{cursorText}</FollowerElement>
       </ContentWrapper>
     </BlockWrapper>
   );
