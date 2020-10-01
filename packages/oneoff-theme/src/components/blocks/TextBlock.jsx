@@ -22,28 +22,28 @@ const TextBlock = ({ data, id }) => {
   };
 
   const renderParagraph = () => {
-    return content ? <ParagraphStyled>{content}</ParagraphStyled> : null;
+    return content ? <StyledParagraph>{content}</StyledParagraph> : null;
   };
 
   const renderLink = () => {
-    return link ? <LinkStyled link={link.url}>{link.title}</LinkStyled> : null;
+    return link ? <StyledLink link={link.url}>{link.title}</StyledLink> : null;
   };
 
   return (
-    <ContentWrapper width={width} backgroundColor={background_color} id={id}>
-      <Content hasParagraph={content !== ""}>
+    <BlockWrapper width={width} backgroundColor={background_color} id={id}>
+      <ContentWrapper hasParagraph={content !== ""}>
         {renderTitle()}
         {renderBigText()}
         {renderParagraph()}
         {renderLink()}
-      </Content>
-    </ContentWrapper>
+      </ContentWrapper>
+    </BlockWrapper>
   );
 };
 
 export default TextBlock;
 
-const ContentWrapper = styled.div`
+const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: ${(props) => props.width}vw;
@@ -73,20 +73,20 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Content = styled.div`
+const ContentWrapper = styled.div`
   margin: auto;
   margin-top: 20vh;
   padding: 0 ${(props) => (props.hasParagraph ? "24%" : "0")};
 `;
 
-const ParagraphStyled = styled.p`
+const StyledParagraph = styled.p`
   font-size: 1.0625rem;
   font-family: Maison Neue Light;
   line-height: 1.8125rem;
   margin-bottom: 2.5rem;
 `;
 
-const LinkStyled = styled(Link)`
+const StyledLink = styled(Link)`
   color: ${colors.GOLD};
   font-size: 1.125rem;
   font-family: Maison Neue Demi;
