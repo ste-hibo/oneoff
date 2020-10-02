@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "frontity";
-import { colors } from "../../styles";
+import { colors, calcLineThroughHeight } from "../../styles";
 import Link from "../link";
 import { getTextWithoutParagraph } from "../../../utilities";
 
@@ -86,9 +86,15 @@ const StyledParagraph = styled.p`
   margin-bottom: 2.5rem;
 `;
 
+const linkFontSize = "1.125rem";
 const StyledLink = styled(Link)`
   color: ${colors.GOLD};
-  font-size: 1.125rem;
+  font-size: ${linkFontSize};
   font-family: Maison Neue Demi;
   margin-top: 2rem;
+
+  &::after {
+    background-color: ${colors.GOLD};
+    height: ${calcLineThroughHeight(linkFontSize)};
+  }
 `;
