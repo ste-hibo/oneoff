@@ -6,7 +6,8 @@ export const LAYOUTS = {
   BIG_WORDS: "big_words",
   IMAGES_A: "images_type_a",
   IMAGES_B: "images_type_b",
-  EXPERIENCES_BLOCK: "experiences_block"
+  EXPERIENCES_BLOCK: "experiences_block",
+  LIST_BLOCK: "list_block"
 }
 
 export const TIMEOUTS = {

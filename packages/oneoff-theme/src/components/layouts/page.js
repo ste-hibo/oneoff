@@ -9,6 +9,7 @@ import ImagesTypeB from "../blocks/ImagesTypeB";
 import ExperiencesBlock from "../blocks/ExperiencesBlock";
 import ContactsBlock from "../blocks/ContactsBlock";
 import BigWords from "../blocks/BigWords";
+import ListBlock from "../blocks/ListBlock";
 import { LAYOUTS } from "../../configs";
 
 const Page = ({ state }) => {
@@ -51,6 +52,9 @@ const Page = ({ state }) => {
 
       case LAYOUTS.EXPERIENCES_BLOCK:
         return <ExperiencesBlock key={`${layout}_${i}`} id={id} data={block} />;
+
+      case LAYOUTS.LIST_BLOCK:
+        return <ListBlock key={`${layout}_${i}`} id={id} data={block} />;
 
       default:
         return null;
