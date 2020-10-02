@@ -101,7 +101,7 @@ const ContactForm = ({ state, libraries }) => {
             background-color: ${colors.GOLD};
             font-family: Maison Neue Demi;
             cursor: pointer;
-            transition: background .5s;
+            transition: background .25s;
 
             &:hover {
               background-color: ${colors.BLACK};
