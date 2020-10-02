@@ -7,12 +7,12 @@ export const LAYOUTS = {
   IMAGES_A: "images_type_a",
   IMAGES_B: "images_type_b",
   EXPERIENCES_BLOCK: "experiences_block",
-  LIST_BLOCK: "list_block"
-}
+  LIST_BLOCK: "list_block",
+};
 
 export const TIMEOUTS = {
   MENU_OPEN: 900,
   MENU_CLOSE: 900,
   GALLERY_OPEN: 600,
-  GALLERY_CLOSE: 600
-}
+  GALLERY_CLOSE: 600,
+};

@@ -44,8 +44,10 @@ const TextBlock = ({ data, id, prevBlock }) => {
   };
 
   const renderBubbles = () => {
+    const bubblesHaveContent = bubbles && bubbles.some((bubble) => bubble.content);
+
     return bubbles ? (
-      <BubblesWrapper>
+      <BubblesWrapper haveContent={bubblesHaveContent}>
         {bubbles.map((bubble) => {
           return <Bubble data={bubble} />;
         })}
@@ -150,7 +152,8 @@ const StyledLink = styled(Link)`
 const BubblesWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: ${(props) =>
+    props.haveContent ? "space-between" : "flex-end"};
   margin-right: 4rem;
   margin-top: 3rem;
 `;
