@@ -9,6 +9,7 @@ import ImagesTypeB from "../blocks/ImagesTypeB";
 import ExperiencesBlock from "../blocks/ExperiencesBlock";
 import ContactsBlock from "../blocks/ContactsBlock";
 import BigWords from "../blocks/BigWords";
+import { LAYOUTS } from "../../configs";
 
 const Page = ({ state }) => {
   const data = state.source.get(state.router.link);
@@ -20,32 +21,39 @@ const Page = ({ state }) => {
     const id = `${layout}_${i}`;
 
     switch (layout) {
-      case "slider":
+      case LAYOUTS.SLIDER:
         return <Slider key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "sticky_panel":
+      case LAYOUTS.STICKY_PANEL:
         return <StickyPanel key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "text_block":
-        return <TextBlock key={`${layout}_${i}`} id={id} data={block} prevBlock={blocks[i-1]} />;
+      case LAYOUTS.TEXT_BLOCK:
+        return (
+          <TextBlock
+            key={`${layout}_${i}`}
+            id={id}
+            data={block}
+            prevBlock={blocks[i - 1]}
+          />
+        );
 
-      case "image_block":
+      case LAYOUTS.IMAGE_BLOCK:
         return <ImageBlock key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "big_words":
+      case LAYOUTS.BIG_WORDS:
         return <BigWords key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "images_type_a":
+      case LAYOUTS.IMAGES_A:
         return <ImagesTypeA key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "images_type_b":
+      case LAYOUTS.IMAGES_B:
         return <ImagesTypeB key={`${layout}_${i}`} id={id} data={block} />;
 
-      case "experiences_block":
+      case LAYOUTS.EXPERIENCES_BLOCK:
         return <ExperiencesBlock key={`${layout}_${i}`} id={id} data={block} />;
 
       default:
-      // return <div key={`${layout}_${i}`}>This block is not configured yet.</div>;
+        return null;
     }
   };
 
