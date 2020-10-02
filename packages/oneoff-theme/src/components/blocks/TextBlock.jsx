@@ -12,6 +12,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
     content,
     link,
     bubbles,
+    image,
     width,
     background_color,
   } = data;
@@ -48,6 +49,10 @@ const TextBlock = ({ data, id, prevBlock }) => {
     ) : null;
   };
 
+  const renderImage = () => {
+    return image ? <StyledImage src={image.url} /> : null;
+  };
+
   const checkIfAddLeftPadding = () => {
     return prevBlock.acf_fc_layout === "images_type_a"
       ? "padding-left: 8vw"
@@ -62,6 +67,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
         {renderParagraph()}
         {renderLink()}
         {renderBubbles()}
+        {renderImage()}
       </ContentWrapper>
     </BlockWrapper>
   );
@@ -70,6 +76,8 @@ const TextBlock = ({ data, id, prevBlock }) => {
 export default TextBlock;
 
 const BlockWrapper = styled.div`
+  position: relative;
+  z-index: -1;
   display: flex;
   flex-direction: column;
   width: ${(props) => props.width}vw;
@@ -78,6 +86,7 @@ const BlockWrapper = styled.div`
     props.backgroundColor === "white" ? colors.WHITE : colors.BLACK};
 
   h1 {
+    width: 100vw;
     font-size: 3.073vw;
     font-family: Circular Std;
     margin-bottom: 2rem;
@@ -132,4 +141,10 @@ const BubblesWrapper = styled.div`
   justify-content: flex-end;
   margin-right: 4rem;
   margin-top: 3rem;
+`;
+
+const StyledImage = styled.img`
+  position: absolute;
+  bottom: 6rem;
+  right: 10vw;
 `;

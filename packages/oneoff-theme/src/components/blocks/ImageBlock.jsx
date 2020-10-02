@@ -12,5 +12,6 @@ export default TextBlock;
 const ImageStyled = styled.img`
   height: 100vh;
   width: auto;
+  z-index: -2;
   ${(props) => props.customStyle}
 `;
