@@ -1,6 +1,7 @@
 import Theme from "./components";
 import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
+import { TIMEOUTS } from "./configs";
 
 const oneoffTheme = {
   name: "@frontity/oneoff-theme",
@@ -24,14 +25,14 @@ const oneoffTheme = {
       isGalleryOpen: false,
       galleryIsClosing: false,
       galleryIsOpening: false,
-      scrollProgress: { percent: 0, value: 0},
+      scrollProgress: { percent: 0, value: 0 },
       scrollTo: 0,
       updateScrollPos: false,
       featured: {
         showOnList: false,
         showOnPost: false,
       },
-      testing: true
+      testing: true,
     },
   },
   /**
@@ -44,7 +45,7 @@ const oneoffTheme = {
         state.theme.menuIsOpening = true;
         setTimeout(() => {
           actions.theme.setMenuOpen();
-        }, 900);
+        }, TIMEOUTS.MENU_OPEN);
       },
       setMenuOpen: ({ state }) => {
         state.theme.isMenuOpen = true;
@@ -53,7 +54,7 @@ const oneoffTheme = {
         state.theme.menuIsClosing = true;
         setTimeout(() => {
           actions.theme.setMenuClose();
-        }, 900);
+        }, TIMEOUTS.MENU_CLOSE);
       },
       setMenuClose: ({ state }) => {
         state.theme.isMenuOpen = false;
@@ -64,7 +65,7 @@ const oneoffTheme = {
         state.theme.galleryIsOpening = true;
         setTimeout(() => {
           actions.theme.setGalleryOpen();
-        }, 600);
+        }, TIMEOUTS.GALLERY_OPEN);
       },
       setGalleryOpen: ({ state }) => {
         state.theme.isGalleryOpen = true;
@@ -73,31 +74,31 @@ const oneoffTheme = {
         state.theme.galleryIsClosing = true;
         setTimeout(() => {
           actions.theme.setGalleryClose();
-        }, 600);
+        }, TIMEOUTS.GALLERY_CLOSE);
       },
       setGalleryClose: ({ state }) => {
         state.theme.isGalleryOpen = false;
         state.theme.galleryIsClosing = false;
         state.theme.galleryIsOpening = false;
       },
-      setScrollProgress: ({state}) => value => {
+      setScrollProgress: ({ state }) => (value) => {
         state.theme.scrollProgress = value;
       },
-      scrollTo: ({state}) => value => {
+      scrollTo: ({ state }) => (value) => {
         state.theme.scrollTo = value;
         state.theme.updateScrollPos = true;
         setInterval(() => {
           state.theme.updateScrollPos = false;
         }, 1000);
       },
-       /*
+      /*
        * use beforeSSR to pre-fetch the contact page
        * content and add it to the state so we can use
        * it in a component
        */
-      beforeSSR: async ({actions}) => {
+      beforeSSR: async ({ actions }) => {
         await actions.source.fetch("/contacts");
-      }
+      },
     },
   },
   libraries: {

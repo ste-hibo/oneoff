@@ -8,3 +8,10 @@ export const LAYOUTS = {
   IMAGES_B: "images_type_b",
   EXPERIENCES_BLOCK: "experiences_block"
 }
+
+export const TIMEOUTS = {
+  MENU_OPEN: 900,
+  MENU_CLOSE: 900,
+  GALLERY_OPEN: 600,
+  GALLERY_CLOSE: 600
+}
