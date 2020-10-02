@@ -4,7 +4,7 @@ import { colors, calcLineThroughHeight } from "../../styles";
 import Link from "../link";
 import { getTextWithoutParagraph } from "../../../utilities";
 
-const TextBlock = ({ data, id }) => {
+const TextBlock = ({ data, id, prevBlock }) => {
   const { title, big_text, content, link, width, background_color } = data;
 
   const renderTitle = () => {
@@ -29,9 +29,15 @@ const TextBlock = ({ data, id }) => {
     return link ? <StyledLink link={link.url}>{link.title}</StyledLink> : null;
   };
 
+  const checkIfAddLeftPadding = () => {
+    return prevBlock.acf_fc_layout === "images_type_a"
+      ? "padding-left: 8vw"
+      : "";
+  };
+
   return (
     <BlockWrapper width={width} backgroundColor={background_color} id={id}>
-      <ContentWrapper hasParagraph={content !== ""}>
+      <ContentWrapper leftPadding={checkIfAddLeftPadding}>
         {renderTitle()}
         {renderBigText()}
         {renderParagraph()}
@@ -74,9 +80,10 @@ const BlockWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  margin: auto;
+  margin-left: 8vw;
+  margin-right: 8vw;
   margin-top: 20vh;
-  padding: 0 ${(props) => (props.hasParagraph ? "24%" : "0")};
+  ${(props) => props.leftPadding};
 `;
 
 const StyledParagraph = styled.p`

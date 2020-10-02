@@ -27,7 +27,7 @@ const Page = ({ state }) => {
         return <StickyPanel key={`${layout}_${i}`} id={id} data={block} />;
 
       case "text_block":
-        return <TextBlock key={`${layout}_${i}`} id={id} data={block} />;
+        return <TextBlock key={`${layout}_${i}`} id={id} data={block} prevBlock={blocks[i-1]} />;
 
       case "image_block":
         return <ImageBlock key={`${layout}_${i}`} id={id} data={block} />;
