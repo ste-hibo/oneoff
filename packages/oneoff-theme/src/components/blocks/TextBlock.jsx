@@ -2,10 +2,19 @@ import React from "react";
 import { styled } from "frontity";
 import { colors, calcLineThroughHeight } from "../../styles";
 import Link from "../link";
+import Bubble from "../Bubble";
 import { getTextWithoutParagraph } from "../../../utilities";
 
 const TextBlock = ({ data, id, prevBlock }) => {
-  const { title, big_text, content, link, width, background_color } = data;
+  const {
+    title,
+    big_text,
+    content,
+    link,
+    bubbles,
+    width,
+    background_color,
+  } = data;
 
   const renderTitle = () => {
     return title ? <h3>{title}</h3> : null;
@@ -29,6 +38,16 @@ const TextBlock = ({ data, id, prevBlock }) => {
     return link ? <StyledLink link={link.url}>{link.title}</StyledLink> : null;
   };
 
+  const renderBubbles = () => {
+    return bubbles ? (
+      <BubblesWrapper>
+        {bubbles.map((bubble) => {
+          return <Bubble data={bubble} />;
+        })}
+      </BubblesWrapper>
+    ) : null;
+  };
+
   const checkIfAddLeftPadding = () => {
     return prevBlock.acf_fc_layout === "images_type_a"
       ? "padding-left: 8vw"
@@ -42,6 +61,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
         {renderBigText()}
         {renderParagraph()}
         {renderLink()}
+        {renderBubbles()}
       </ContentWrapper>
     </BlockWrapper>
   );
@@ -104,4 +124,12 @@ const StyledLink = styled(Link)`
     background-color: ${colors.GOLD};
     height: ${calcLineThroughHeight(linkFontSize)};
   }
+`;
+
+const BubblesWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 4rem;
+  margin-top: 3rem;
 `;

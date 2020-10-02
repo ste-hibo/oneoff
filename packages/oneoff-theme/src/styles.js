@@ -15,6 +15,7 @@ export const colors = {
   BLACK: "#000000",
   PRIMARY: "#000000",
   SECONDARY: "#4C4C4C",
+  DARK_GREY: "#707070",
   MENU_BACKGROUND: "#000000",
   SLIDER_GRADIENT: "#131313",
   ERROR: "#ff2c18"
