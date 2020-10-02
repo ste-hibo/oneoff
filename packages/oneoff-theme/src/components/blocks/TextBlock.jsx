@@ -4,6 +4,7 @@ import { colors, calcLineThroughHeight } from "../../styles";
 import Link from "../link";
 import Bubble from "../Bubble";
 import { getTextWithoutParagraph } from "../../../utilities";
+import { LAYOUTS } from "../../configs";
 
 const TextBlock = ({ data, id, prevBlock }) => {
   const {
@@ -15,6 +16,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
     image,
     width,
     background_color,
+    paragraph_columns,
   } = data;
 
   const renderTitle = () => {
@@ -32,7 +34,9 @@ const TextBlock = ({ data, id, prevBlock }) => {
   };
 
   const renderParagraph = () => {
-    return content ? <StyledParagraph>{content}</StyledParagraph> : null;
+    return content ? (
+      <StyledParagraph columns={paragraph_columns}>{content}</StyledParagraph>
+    ) : null;
   };
 
   const renderLink = () => {
@@ -54,13 +58,18 @@ const TextBlock = ({ data, id, prevBlock }) => {
   };
 
   const checkIfAddLeftPadding = () => {
-    return prevBlock.acf_fc_layout === "images_type_a"
+    return prevBlock.acf_fc_layout === LAYOUTS.IMAGES_A
       ? "padding-left: 8vw"
       : "";
   };
 
   return (
-    <BlockWrapper width={width} backgroundColor={background_color} id={id}>
+    <BlockWrapper
+      width={width}
+      backgroundColor={background_color}
+      hasImage={image}
+      id={id}
+    >
       <ContentWrapper leftPadding={checkIfAddLeftPadding}>
         {renderTitle()}
         {renderBigText()}
@@ -76,8 +85,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
 export default TextBlock;
 
 const BlockWrapper = styled.div`
-  position: relative;
-  z-index: -1;
+  position: ${(props) => (props.hasImage ? "relative" : "unset")};
   display: flex;
   flex-direction: column;
   width: ${(props) => props.width}vw;
@@ -120,6 +128,10 @@ const StyledParagraph = styled.p`
   font-family: Maison Neue Light;
   line-height: 1.8125rem;
   margin-bottom: 2.5rem;
+
+  column-count: ${(props) => props.columns};
+  column-gap: 2rem;
+  ${(props) => (props.columns > 1 ? "width: 75%" : "")};
 `;
 
 const linkFontSize = "1.125rem";
