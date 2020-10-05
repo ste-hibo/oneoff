@@ -14,6 +14,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
     link,
     bubbles,
     image,
+    image_custom_style,
     width,
     background_color,
     paragraph_columns,
@@ -44,7 +45,8 @@ const TextBlock = ({ data, id, prevBlock }) => {
   };
 
   const renderBubbles = () => {
-    const bubblesHaveContent = bubbles && bubbles.some((bubble) => bubble.content);
+    const bubblesHaveContent =
+      bubbles && bubbles.some((bubble) => bubble.content);
 
     return bubbles ? (
       <BubblesWrapper haveContent={bubblesHaveContent}>
@@ -56,7 +58,9 @@ const TextBlock = ({ data, id, prevBlock }) => {
   };
 
   const renderImage = () => {
-    return image ? <StyledImage src={image.url} /> : null;
+    return image ? (
+      <StyledImage src={image.url} customStyle={image_custom_style} />
+    ) : null;
   };
 
   const checkIfAddLeftPadding = () => {
@@ -94,6 +98,7 @@ const BlockWrapper = styled.div`
   height: 100vh;
   background-color: ${(props) =>
     props.backgroundColor === "white" ? colors.WHITE : colors.BLACK};
+  z-index: 0;
 
   h1 {
     width: 100vw;
@@ -162,4 +167,6 @@ const StyledImage = styled.img`
   position: absolute;
   bottom: 6rem;
   right: 10vw;
+  z-index: -1;
+  ${(props) => props.customStyle}
 `;
