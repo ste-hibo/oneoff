@@ -49,7 +49,7 @@ const TextBlock = ({ data, id, prevBlock }) => {
     return bubbles ? (
       <BubblesWrapper haveContent={bubblesHaveContent}>
         {bubbles.map((bubble) => {
-          return <Bubble data={bubble} />;
+          return <Bubble key={bubble.title} data={bubble} />;
         })}
       </BubblesWrapper>
     ) : null;
