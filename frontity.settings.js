@@ -2,7 +2,7 @@ const settings = {
   "name": "oneoff",
   "state": {
     "frontity": {
-      "url": "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/",
+      "url": "https://api.oneoffexclusive.com/",
       "title": "ONEOFF",
       "description": "Exclusively Yours"
     }
@@ -15,26 +15,26 @@ const settings = {
           "menu": [
             [
               "/about-us/",
-              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/about-us.jpg",
+              "https://api.oneoffexclusive.com/wp-content/uploads/2020/09/about-us.jpg",
               "About us",
             ],
             [
               "/experiences/",
-              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/experiences.jpg",
+              "https://api.oneoffexclusive.com/wp-content/uploads/2020/09/experiences.jpg",
               "Experiences",
             ],
             [
               "/process/",
-              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/process.jpg",
+              "https://api.oneoffexclusive.com/wp-content/uploads/2020/09/process.jpg",
               "Process",
             ],
             [
               "/contacts/",
-              "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.jpg",
+              "https://api.oneoffexclusive.com/wp-content/uploads/2020/09/menu-background.jpg",
               "Contacts",
             ]
           ],
-          "defaultMenuImage": "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-content/uploads/2020/09/menu-background.jpg",
+          "defaultMenuImage": "https://api.oneoffexclusive.com/wp-content/uploads/2020/09/menu-background.jpg",
           "bottomLinks": [
             [
               "Follow us on Instagram",
@@ -75,7 +75,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "api": "http://oneoff.7frwk6ymb9-ewx3lz9el4zq.p.runcloud.link/wp-json",
+          "api": "https://api.oneoffexclusive.com/wp-json",
           "homepage": "/homepage",
           postTypes: [
             {

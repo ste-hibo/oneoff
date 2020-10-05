@@ -11,7 +11,10 @@ const Gallery = ({ state, actions }) => {
   const { acf } = page;
 
   useEffect(() => {
-    document.getElementsByClassName("carousel-root")[0].focus();
+    const carousel = document.getElementsByClassName("carousel-root");
+    if (carousel && carousel[0]) {
+      carousel[0].focus();
+    }
   }, []);
 
   const renderImages = () => {

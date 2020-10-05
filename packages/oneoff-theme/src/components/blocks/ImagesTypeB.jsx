@@ -13,7 +13,7 @@ const ImagesTypeB = ({ data, id }) => {
   const renderContent = () => {
     return rows
       ? rows.map((row) => {
-          return <span dangerouslySetInnerHTML={{ __html: row }}></span>;
+          return <span key={row} dangerouslySetInnerHTML={{ __html: row }}></span>;
         })
       : null;
   };
