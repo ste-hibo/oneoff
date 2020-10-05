@@ -6,6 +6,7 @@ const ContactForm = ({ state, libraries }) => {
   const data = state.source.get("/contacts");
   const contactForm = state.source.page[data.id];
   const Html2React = libraries.html2react.Component;
+  const formId = "278";
 
   useEffect(() => {
     const wpcf7Elm = document.querySelector(".wpcf7");
@@ -16,17 +17,27 @@ const ContactForm = ({ state, libraries }) => {
     };
   }, []);
 
-  const submitForm = (ev) => {
+  const checkSuccess = () => {
+    const responseInfo = state.cf7.forms[formId];
+    if (responseInfo && responseInfo.status === "sent") {
+      clearInterval(checkSuccessInterval);
+      // Do something when the message is sent.
+    }
+  }
+  const checkSuccessInterval = setInterval(checkSuccess, 1000);
+
+  const submitForm = () => {
     document.addEventListener("click", closeSuccessPanel, false);
+
+    if (typeof checkSuccessInterval === "function") {
+      checkSuccessInterval();
+    }
   };
 
-  const closeSuccessPanel = (ev) => {
-    const successPanel = document.querySelector(".css-xwf3m5-SuccessMessage");
-    if (successPanel) {
-      successPanel.remove();
-    }
+  const closeSuccessPanel = () => {
     document.removeEventListener("click", closeSuccessPanel);
-  }
+    window.location.reload();
+  };
 
   return (
     <>
